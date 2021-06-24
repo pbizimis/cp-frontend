@@ -5,17 +5,14 @@ import { Nav } from '../components/Nav';
 import { Loading } from '../components/Loading';
 import { Error } from '../components/AuthError';
 
-export default function Example() {
+export default function Index() {
 
   const { isLoading, error } = useAuth0();
-
-  if (isLoading) {
-    return <Loading />
-  }
 
   return (
     <div className="min-h-screen">
       <div className="relative overflow-hidden">
+      {isLoading ? <Loading /> : null}
       <Nav />
       {error && <Error message={error.message} />}
 
