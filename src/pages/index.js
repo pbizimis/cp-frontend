@@ -1,5 +1,5 @@
-import React from "react"
-import { ChevronRightIcon } from '@heroicons/react/solid'
+import React from "react";
+import { ChevronRightIcon } from '@heroicons/react/solid';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Nav } from '../components/Nav';
 import { Loading } from '../components/Loading';
@@ -9,10 +9,13 @@ export default function Index() {
 
   const { isLoading, error } = useAuth0();
 
+  if (isLoading) {
+    return <Loading />;
+  }
+  
   return (
     <div className="min-h-screen">
       <div className="relative overflow-hidden">
-      {isLoading ? <Loading /> : null}
       <Nav />
       {error && <Error message={error.message} />}
 

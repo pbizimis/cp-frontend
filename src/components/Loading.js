@@ -2,16 +2,15 @@ import React from 'react';
 
 export function Loading() {
   return (
-    <div className="rounded-md bg-yellow-50 p-4">
-      <div className="flex">
-        <div className="ml-3">
-          <h3 className="text-sm font-medium text-yellow-800">LOADING</h3>
-          <div className="mt-2 text-sm text-yellow-700">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid pariatur, ipsum similique veniam quo
-              totam eius aperiam dolorum.
-            </p>
-          </div>
+    <div className="min-h-screen bg-white flex justify-center items-center">
+      <div class="flex items-center justify-center w-full h-full">
+        <div class="flex justify-center items-center text-gray-500">
+          
+              <svg fill='none' class="w-24 h-24 animate-spin" viewBox="0 0 32 32" xmlns='http://www.w3.org/2000/svg'>
+                <path clip-rule='evenodd'
+                  d='M15.165 8.53a.5.5 0 01-.404.58A7 7 0 1023 16a.5.5 0 011 0 8 8 0 11-9.416-7.874.5.5 0 01.58.404z'
+                  fill='currentColor' fill-rule='evenodd' />
+              </svg>
         </div>
       </div>
     </div>
