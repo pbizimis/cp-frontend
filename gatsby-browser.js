@@ -10,6 +10,7 @@ export const wrapRootElement = ({ element }) => {
     <Auth0Provider
       domain={process.env.GATSBY_DOMAIN}
       clientId={process.env.GATSBY_CLIENT_ID}
+      audience={process.env.GATSBY_AUDIENCE}
       redirectUri={window.location.origin}
       onRedirectCallback={onRedirectCallback}
     >
