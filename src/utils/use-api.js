@@ -1,4 +1,4 @@
-export const postApi = async (url, options, getAccessTokenSilently) => {
+export const postApi = async (data, url, options, getAccessTokenSilently) => {
     let state = {
         error: null,
         data: null
@@ -13,6 +13,7 @@ export const postApi = async (url, options, getAccessTokenSilently) => {
             // Add the Authorization header to the existing headers
             Authorization: `Bearer ${accessToken}`,
           },
+          body: JSON.stringify(data)
         });
         state = {
             ...state,
