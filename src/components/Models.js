@@ -85,7 +85,7 @@ function Model({ id, onClick, getAccessTokenSilently }) {
         key={model.title}
         layoutId={`container-${model.id}`}
         transition={{ duration: 0.5, delay: 0 }}
-        className="rounded-lg sm:rounded-tr-none absolute z-40 inset-0 bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500"
+        className="rounded-lg sm:rounded-tr-none absolute z-40 top-0 right-0 left-0 bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500"
       >
         <motion.div>
           <motion.span
@@ -162,7 +162,7 @@ export function Models({ getAccessTokenSilently }) {
 
   return (
     <AnimateSharedLayout type="crossfade">
-      <div className="mx-12 rounded-lg bg-gray-200 overflow-hidden shadow-2xl divide-y divide-gray-200 sm:divide-y-0 sm:grid sm:grid-cols-2 sm:gap-px relative">
+      <div className="mx-12 rounded-lg bg-gray-200 shadow-2xl divide-y divide-gray-200 sm:divide-y-0 sm:grid sm:grid-cols-2 sm:gap-px relative">
         {models.map((model, modelIdx) => (
           <motion.div
             key={model.title}
@@ -200,7 +200,10 @@ export function Models({ getAccessTokenSilently }) {
               >
                 {model.title}
               </motion.h3>
-              <motion.p layout className="mt-2 text-sm text-gray-500">
+              <motion.p
+              layout
+              transition={{duration: 0}}
+              className="mt-2 text-sm text-gray-500">
                 Doloribus dolores nostrum quia qui natus officia quod et
                 dolorem. Sit repellendus qui ut at blanditiis et quo et
                 molestiae.
