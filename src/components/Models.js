@@ -9,7 +9,7 @@ import {
   UsersIcon,
   XIcon,
 } from "@heroicons/react/outline"
-import { Form } from "../components/Form"
+import { Generate } from "../components/Generate"
 
 const models = [
   {
@@ -85,7 +85,7 @@ function Model({ id, onClick, getAccessTokenSilently }) {
         key={model.title}
         layoutId={`container-${model.id}`}
         transition={{ duration: 0.5, delay: 0 }}
-        className="rounded-lg sm:rounded-tr-none absolute z-40 top-0 right-0 left-0 bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500"
+        className="rounded-lg sm:rounded-tr-none absolute z-40 top-0 right-0 left-0 min-h-full bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500"
       >
         <motion.div>
           <motion.span
@@ -140,7 +140,7 @@ function Model({ id, onClick, getAccessTokenSilently }) {
           exit={{ opacity: 0, transition: { duration: 0.05 } }}
           transition={{ duration: 0.5, delay: 1 }}
         >
-          <Form
+          <Generate
             setApiLoading={setApiLoading}
             setApiData={setApiData}
             getAccessTokenSilently={getAccessTokenSilently}
@@ -148,7 +148,7 @@ function Model({ id, onClick, getAccessTokenSilently }) {
           {apiLoading === true && <h1>Loading</h1>}
           {apiData !== null && (
             <div>
-              <h1>Model {apiData["model"]["name"]}</h1>
+              <h1>Model {apiData["model"]}</h1>
               <h1>Truncation Value{apiData["truncation"]}</h1>
             </div>
           )}
