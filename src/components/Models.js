@@ -99,10 +99,11 @@ function Model({ id, onClick, getAccessTokenSilently }) {
             <model.icon className="h-6 w-6" aria-hidden="true" />
           </motion.span>
         </motion.div>
-        <motion.div className="inline-flex flex-col items-start mt-6">
+        <motion.div layout className="inline-flex flex-col items-start mt-6">
           <motion.h3
             className="text-2xl font-medium"
             style={{ lineHeight: 1 }}
+            layout
             layoutId={`title-text-${model.id}`}
             transition={{ duration: 0.5, delay: 0 }}
           >
@@ -136,7 +137,7 @@ function Model({ id, onClick, getAccessTokenSilently }) {
           layout
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          exit={{ opacity: 0, transition: { duration: 0.15 } }}
+          exit={{ opacity: 0, transition: { duration: 0.05 } }}
           transition={{ duration: 0.5, delay: 1 }}
         >
           <Form
@@ -161,7 +162,7 @@ export function Models({ getAccessTokenSilently }) {
   const [selectedId, setSelectedId] = useState(null)
 
   return (
-    <AnimateSharedLayout type="crossfade">
+    <AnimateSharedLayout>
       <div className="mx-12 rounded-lg bg-gray-200 shadow-2xl divide-y divide-gray-200 sm:divide-y-0 sm:grid sm:grid-cols-2 sm:gap-px relative">
         {models.map((model, modelIdx) => (
           <motion.div
@@ -192,7 +193,10 @@ export function Models({ getAccessTokenSilently }) {
                 <model.icon className="h-6 w-6" aria-hidden="true" />
               </motion.span>
             </motion.div>
-            <motion.div className="inline-flex flex-col items-start mt-6">
+            <motion.div
+              layout
+              className="inline-flex flex-col items-start mt-6"
+            >
               <motion.h3
                 className="text-2xl font-medium"
                 style={{ lineHeight: 1 }}
@@ -201,9 +205,15 @@ export function Models({ getAccessTokenSilently }) {
                 {model.title}
               </motion.h3>
               <motion.p
-              layout
-              transition={{duration: 0}}
-              className="mt-2 text-sm text-gray-500">
+                animate={{
+                  opacity: selectedId === model.id ? 0 : 1,
+                  transition:
+                    selectedId === model.id
+                      ? { delay: 0 }
+                      : { duration: 0.2, delay: 0.5 },
+                }}
+                className="mt-2 text-sm text-gray-500"
+              >
                 Doloribus dolores nostrum quia qui natus officia quod et
                 dolorem. Sit repellendus qui ut at blanditiis et quo et
                 molestiae.

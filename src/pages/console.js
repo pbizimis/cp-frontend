@@ -12,7 +12,7 @@ const Console = () => {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-hidden">
       <Nav />
 
       <section className="max-w-7xl m-auto mt-24">
