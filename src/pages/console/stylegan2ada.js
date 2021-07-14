@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react"
 import { Loading } from "../../components/Loading"
 import { Nav } from "../../components/Nav"
-import { Models } from "../../components/Methods"
+import { Methods } from "../../components/Methods"
 import { postApi } from "../../utils/use-api"
 
 const StyleGan2ADA = () => {
@@ -29,7 +29,7 @@ const StyleGan2ADA = () => {
       <Nav />
 
       <section className="max-w-7xl m-auto mt-24">
-        <Models getAccessTokenSilently={getAccessTokenSilently} data={data} url_prefix={url_prefix}/>
+        <Methods getAccessTokenSilently={getAccessTokenSilently} data={data} url_prefix={url_prefix}/>
       </section>
     </div>
   )
