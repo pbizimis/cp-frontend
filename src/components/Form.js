@@ -131,29 +131,37 @@ function Slider({ data, control }) {
 }
 
 export function Form({
-  formOptions,
+  method,
   setApiLoading,
   setApiData,
   getAccessTokenSilently,
 }) {
   const { control, handleSubmit } = useForm()
 
-  const url = process.env.GATSBY_AUDIENCE + formOptions.http.url
-  const options = formOptions.http.options
+  const url = method.url
 
-  const fetchData = async (data, event, url, options) => {
+  const fetchData = async (data, event, url) => {
     event.preventDefault()
     setApiLoading(true)
-    const state = await postApi(data, url, options, getAccessTokenSilently)
+    const state = await postApi(data, url, null, getAccessTokenSilently)
     setApiLoading(false)
     setApiData(state.data)
   }
 
   function buildForm() {
+
+    let formOptions = method.form_data;
+
     let componentList = new Array(Object.keys(formOptions).length - 1).fill(0)
 
     for (var key in formOptions) {
       if (formOptions[key].type == "dropdown") {
+        let options = [];
+        formOptions[key].options.map(model => {
+          options.push(`Model (${model.img}k images, Resolution ${model.res}, FID ${model.fid})`)
+        })
+        formOptions[key].options = options;
+
         componentList[formOptions[key].place - 1] = (
           <Dropdown data={formOptions[key]} control={control} />
         )
@@ -170,7 +178,7 @@ export function Form({
     <form
       className="space-y-8 divide-y divide-gray-200 max-w-7xl m-auto mt-24"
       onSubmit={handleSubmit(
-        async (data, event) => await fetchData(data, event, url, options)
+        async (data, event) => await fetchData(data, event, url)
       )}
     >
       <div className="space-y-8 divide-y divide-gray-200">

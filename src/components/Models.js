@@ -9,65 +9,15 @@ import {
   UsersIcon,
   XIcon,
 } from "@heroicons/react/outline"
-import { Generate } from "../components/Generate"
-
-const models = [
-  {
-    title: "Request time off",
-    id: "a",
-    href: "#",
-    icon: ClockIcon,
-    iconForeground: "text-purple-700",
-    iconBackground: "bg-purple-50",
-  },
-  {
-    title: "Benefits",
-    id: "b",
-    href: "#",
-    icon: BadgeCheckIcon,
-    iconForeground: "text-purple-700",
-    iconBackground: "bg-purple-50",
-  },
-  {
-    title: "Schedule a one-on-one",
-    id: "c",
-    href: "#",
-    icon: UsersIcon,
-    iconForeground: "text-purple-700",
-    iconBackground: "bg-purple-50",
-  },
-  {
-    title: "Payroll",
-    id: "d",
-    href: "#",
-    icon: CashIcon,
-    iconForeground: "text-yellow-700",
-    iconBackground: "bg-yellow-50",
-  },
-  {
-    title: "Submit an expense",
-    id: "e",
-    href: "#",
-    icon: ReceiptRefundIcon,
-    iconForeground: "text-purple-700",
-    iconBackground: "bg-purple-50",
-  },
-  {
-    title: "Training",
-    id: "f",
-    href: "#",
-    icon: AcademicCapIcon,
-    iconForeground: "text-indigo-700",
-    iconBackground: "bg-indigo-50",
-  },
-]
+import { Form } from "./Form"
+import { Loading } from "../components/Loading"
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ")
 }
 
-function Model({ id, onClick, getAccessTokenSilently }) {
-  const model = models.find(model => model.id === id)
+function Model({ id, onClick, getAccessTokenSilently, methods }) {
+  const model = methods.find(model => model.name === id)
   const [apiLoading, setApiLoading] = useState(false)
   const [apiData, setApiData] = useState(null)
 
@@ -82,21 +32,17 @@ function Model({ id, onClick, getAccessTokenSilently }) {
         onClick={onClick}
       ></motion.div>
       <motion.div
-        key={model.title}
-        layoutId={`container-${model.id}`}
+        key={model.name}
+        layoutId={`container-${model.name}`}
         transition={{ duration: 0.5, delay: 0 }}
         className="rounded-lg sm:rounded-tr-none absolute z-40 top-0 right-0 left-0 min-h-full bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500"
       >
         <motion.div>
           <motion.span
-            layoutId={`title-icon-${model.id}`}
-            className={classNames(
-              model.iconBackground,
-              model.iconForeground,
-              "rounded-lg inline-flex p-3 ring-4 ring-white"
-            )}
+            layoutId={`title-icon-${model.name}`}
+            className={"rounded-lg inline-flex p-3 ring-4 ring-white text-purple-700 bg-purple-50"}
           >
-            <model.icon className="h-6 w-6" aria-hidden="true" />
+            <BadgeCheckIcon className="h-6 w-6" aria-hidden="true" />
           </motion.span>
         </motion.div>
         <motion.div layout className="inline-flex flex-col items-start mt-6">
@@ -104,10 +50,10 @@ function Model({ id, onClick, getAccessTokenSilently }) {
             className="text-2xl font-medium"
             style={{ lineHeight: 1 }}
             layout
-            layoutId={`title-text-${model.id}`}
+            layoutId={`title-text-${model.name}`}
             transition={{ duration: 0.5, delay: 0 }}
           >
-            {model.title}
+            {model.name}
           </motion.h3>
           <motion.p
             layout
@@ -117,8 +63,7 @@ function Model({ id, onClick, getAccessTokenSilently }) {
             exit={{ opacity: 0, transition: { duration: 0.15 } }}
             transition={{ duration: 0.5, delay: 0.5 }}
           >
-            Doloribus dolores nostrum quia qui natus officia quod et dolorem.
-            Sit repellendus qui ut at blanditiis et quo et molestiae.
+            {model.description}
           </motion.p>
         </motion.div>
         <motion.button
@@ -140,7 +85,8 @@ function Model({ id, onClick, getAccessTokenSilently }) {
           exit={{ opacity: 0, transition: { duration: 0.05 } }}
           transition={{ duration: 0.5, delay: 1 }}
         >
-          <Generate
+          <Form
+            method={model}
             setApiLoading={setApiLoading}
             setApiData={setApiData}
             getAccessTokenSilently={getAccessTokenSilently}
@@ -158,24 +104,35 @@ function Model({ id, onClick, getAccessTokenSilently }) {
   )
 }
 
-export function Models({ getAccessTokenSilently }) {
+export function Models({ getAccessTokenSilently, data, url_prefix }) {
   const [selectedId, setSelectedId] = useState(null)
+
+  let methods = [];
+
+  if (data) {
+    for (let method in data) {
+      data[method]["url"] = url_prefix + data[method].name.toLowerCase()
+      methods.push(data[method]);
+    }
+  } else {
+    return <Loading />
+  }
 
   return (
     <AnimateSharedLayout>
       <div className="mx-12 rounded-lg bg-gray-200 shadow-2xl divide-y divide-gray-200 sm:divide-y-0 sm:grid sm:grid-cols-2 sm:gap-px relative">
-        {models.map((model, modelIdx) => (
+        {methods.map((model, modelIdx) => (
           <motion.div
-            key={model.title}
-            layoutId={`container-${model.id}`}
-            onClick={() => setSelectedId(model.id)}
+            key={model.name}
+            layoutId={`container-${model.name}`}
+            onClick={() => setSelectedId(model.name)}
             className={classNames(
               modelIdx === 0
                 ? "rounded-tl-lg rounded-tr-lg sm:rounded-tr-none"
                 : "",
               modelIdx === 1 ? "sm:rounded-tr-lg" : "",
-              modelIdx === models.length - 2 ? "sm:rounded-bl-lg" : "",
-              modelIdx === models.length - 1
+              modelIdx === methods.length - 2 ? "sm:rounded-bl-lg" : "",
+              modelIdx === methods.length - 1
                 ? "rounded-bl-lg rounded-br-lg sm:rounded-bl-none"
                 : "",
               "relative group bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500 cursor-pointer"
@@ -183,14 +140,10 @@ export function Models({ getAccessTokenSilently }) {
           >
             <motion.div>
               <motion.span
-                layoutId={`title-icon-${model.id}`}
-                className={classNames(
-                  model.iconBackground,
-                  model.iconForeground,
-                  "rounded-lg inline-flex p-3 ring-4 ring-white"
-                )}
+                layoutId={`title-icon-${model.name}`}
+                className={"rounded-lg inline-flex p-3 ring-4 ring-white bg-purple-50 text-purple-700"}
               >
-                <model.icon className="h-6 w-6" aria-hidden="true" />
+                <BadgeCheckIcon className="h-6 w-6" aria-hidden="true" />
               </motion.span>
             </motion.div>
             <motion.div
@@ -200,23 +153,21 @@ export function Models({ getAccessTokenSilently }) {
               <motion.h3
                 className="text-2xl font-medium"
                 style={{ lineHeight: 1 }}
-                layoutId={`title-text-${model.id}`}
+                layoutId={`title-text-${model.name}`}
               >
-                {model.title}
+                {model.name}
               </motion.h3>
               <motion.p
                 animate={{
-                  opacity: selectedId === model.id ? 0 : 1,
+                  opacity: selectedId === model.name ? 0 : 1,
                   transition:
-                    selectedId === model.id
+                    selectedId === model.name
                       ? { delay: 0 }
                       : { duration: 0.2, delay: 0.5 },
                 }}
                 className="mt-2 text-sm text-gray-500"
               >
-                Doloribus dolores nostrum quia qui natus officia quod et
-                dolorem. Sit repellendus qui ut at blanditiis et quo et
-                molestiae.
+                {model.description}
               </motion.p>
             </motion.div>
           </motion.div>
@@ -227,6 +178,7 @@ export function Models({ getAccessTokenSilently }) {
               id={selectedId}
               onClick={() => setSelectedId(null)}
               getAccessTokenSilently={getAccessTokenSilently}
+              methods={methods}
             />
           )}
         </AnimatePresence>
