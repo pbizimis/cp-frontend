@@ -4,7 +4,9 @@ export const postApi = async (data, url, getAccessTokenSilently) => {
         data: null
     };
     try {
-        const accessToken = await getAccessTokenSilently(process.env.GATSBY_AUDIENCE, 'use:all');
+        const audience = process.env.GATSBY_AUDIENCE;
+        const scope = 'use:all';
+        const accessToken = await getAccessTokenSilently({ audience, scope });
 
         let fetchObject = data ? {
           method: "POST",
