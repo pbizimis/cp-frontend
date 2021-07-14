@@ -149,8 +149,7 @@ export function Form({
   }
 
   function buildForm() {
-
-    let formOptions = method.form_data;
+    let formOptions = method.method_options;
 
     let componentList = new Array(Object.keys(formOptions).length - 1).fill(0)
 
