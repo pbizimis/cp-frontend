@@ -10,14 +10,9 @@ const StyleGan2ADA = () => {
   const { isLoading, getAccessTokenSilently } = useAuth0()
 
   const url_prefix = "http://localhost:8000/api/v1/stylegan2ada/"
-  const options = {
-      audience: process.env.GATSBY_AUDIENCE,
-      scope: "use:all",
-      method: "GET",
-  }
 
   const fetchData = async () => {
-      const state = await postApi(null, url_prefix + "methods", options, getAccessTokenSilently)
+      const state = await postApi(null, url_prefix + "methods", getAccessTokenSilently)
       setData(state.data)
   }
 

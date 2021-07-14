@@ -1,10 +1,9 @@
-export const postApi = async (data, url, options, getAccessTokenSilently) => {
+export const postApi = async (data, url, getAccessTokenSilently) => {
     let state = {
         error: null,
         data: null
     };
     try {
-        const { audience, scope, ...fetchOptions } = options;
         const accessToken = await getAccessTokenSilently(process.env.GATSBY_AUDIENCE, 'use:all');
 
         let fetchObject = data ? {
@@ -15,10 +14,8 @@ export const postApi = async (data, url, options, getAccessTokenSilently) => {
           },
           body: JSON.stringify(data)
         } : {
-          ...fetchOptions,
+          method: "GET",
           headers: {
-            ...fetchOptions.headers,
-            // Add the Authorization header to the existing headers
             Authorization: `Bearer ${accessToken}`,
           
           }

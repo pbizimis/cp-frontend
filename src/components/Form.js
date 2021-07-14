@@ -143,7 +143,7 @@ export function Form({
   const fetchData = async (data, event, url) => {
     event.preventDefault()
     setApiLoading(true)
-    const state = await postApi(data, url, null, getAccessTokenSilently)
+    const state = await postApi(data, url, getAccessTokenSilently)
     setApiLoading(false)
     setApiData(state.data)
   }
