@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react"
 import { Loading } from "../../components/Loading"
 import { Nav } from "../../components/Nav"
-import { Models } from "../../components/Models"
+import { Models } from "../../components/Methods"
 import { postApi } from "../../utils/use-api"
 
 const StyleGan2ADA = () => {

@@ -10,13 +10,13 @@ import {
   XIcon,
 } from "@heroicons/react/outline"
 import { Form } from "./Form"
-import { Loading } from "../components/Loading"
+import { Loading } from "./Loading"
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ")
 }
 
-function Model({ id, onClick, getAccessTokenSilently, methods }) {
+function Method({ id, onClick, getAccessTokenSilently, methods }) {
   const model = methods.find(model => model.name === id)
   const [apiLoading, setApiLoading] = useState(false)
   const [apiData, setApiData] = useState(null)
@@ -104,7 +104,7 @@ function Model({ id, onClick, getAccessTokenSilently, methods }) {
   )
 }
 
-export function Models({ getAccessTokenSilently, data, url_prefix }) {
+export function Methods({ getAccessTokenSilently, data, url_prefix }) {
   const [selectedId, setSelectedId] = useState(null)
 
   let methods = [];
@@ -174,7 +174,7 @@ export function Models({ getAccessTokenSilently, data, url_prefix }) {
         ))}
         <AnimatePresence>
           {selectedId && (
-            <Model
+            <Method
               id={selectedId}
               onClick={() => setSelectedId(null)}
               getAccessTokenSilently={getAccessTokenSilently}
