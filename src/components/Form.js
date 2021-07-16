@@ -11,7 +11,6 @@ function classNames(...classes) {
 
 function Dropdown({ data, control }) {
   const [selected, setSelected] = useState(data.options[data.default])
-
   return (
     <div className="sm:col-span-6">
       <label className="block text-sm font-medium text-gray-700">
@@ -33,7 +32,7 @@ function Dropdown({ data, control }) {
               <>
                 <div className="mt-1 relative">
                   <Listbox.Button className="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                    <span className="block truncate">{selected}</span>
+                    <span className="block truncate">Model ({selected.img}k images, Resolution {selected.res}, FID {selected.fid})</span>
                     <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                       <SelectorIcon
                         className="h-5 w-5 text-gray-400"
@@ -74,7 +73,7 @@ function Dropdown({ data, control }) {
                                   "block truncate"
                                 )}
                               >
-                                {option}
+                                Model ({option.img}k images, Resolution {option.res}, FID {option.fid})
                               </span>
 
                               {selected ? (
@@ -157,7 +156,7 @@ export function Form({
       if (formOptions[key].type == "dropdown") {
         let options = [];
         formOptions[key].options.map(model => {
-          options.push(`Model (${model.img}k images, Resolution ${model.res}, FID ${model.fid})`)
+          options.push(model)
         })
         formOptions[key].options = options;
 
