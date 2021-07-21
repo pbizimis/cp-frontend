@@ -94,8 +94,7 @@ function Method({ id, onClick, getAccessTokenSilently, methods }) {
           {apiLoading === true && <h1>Loading</h1>}
           {apiData !== null && (
             <div>
-              <h1>Model {apiData["model"]}</h1>
-              <h1>Truncation Value{apiData["truncation"]}</h1>
+              <img src={apiData.image_url} />
             </div>
           )}
         </motion.div>

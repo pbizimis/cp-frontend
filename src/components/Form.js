@@ -4,6 +4,7 @@ import { CheckIcon, SelectorIcon } from "@heroicons/react/solid"
 import { DiscreteSlider } from "./Slider"
 import { postApi } from "../utils/use-api"
 import { useForm, Controller } from "react-hook-form"
+import TextField from '@material-ui/core/TextField';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ")
@@ -32,7 +33,12 @@ function Dropdown({ data, control }) {
               <>
                 <div className="mt-1 relative">
                   <Listbox.Button className="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                    <span className="block truncate">Model ({selected.img}k images, Resolution {selected.res}, FID {selected.fid})</span>
+                    {data.name.toLowerCase() == "model" && 
+                      <span className="block truncate">Model ({selected.img}k images, Resolution {selected.res}, FID {selected.fid})</span>
+                    }
+                    {data.name.toLowerCase() != "model" && 
+                      <span className="block truncate">{selected}</span>
+                    }
                     <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                       <SelectorIcon
                         className="h-5 w-5 text-gray-400"
@@ -67,14 +73,26 @@ function Dropdown({ data, control }) {
                         >
                           {({ selected, active }) => (
                             <>
-                              <span
-                                className={classNames(
-                                  selected ? "font-semibold" : "font-normal",
-                                  "block truncate"
-                                )}
-                              >
-                                Model ({option.img}k images, Resolution {option.res}, FID {option.fid})
-                              </span>
+                              {data.name.toLowerCase() == "model" && 
+                                <span
+                                  className={classNames(
+                                    selected ? "font-semibold" : "font-normal",
+                                    "block truncate"
+                                  )}
+                                >
+                                  Model ({option.img}k images, Resolution {option.res}, FID {option.fid})
+                                </span>
+                              }
+                              {data.name.toLowerCase() != "model" && 
+                                <span
+                                  className={classNames(
+                                    selected ? "font-semibold" : "font-normal",
+                                    "block truncate"
+                                  )}
+                                >
+                                  {option}
+                                </span>
+                              }
 
                               {selected ? (
                                 <span
@@ -129,6 +147,24 @@ function Slider({ data, control }) {
   )
 }
 
+function Text({ data, control }) {
+  return (
+    <div className="sm:col-span-6">
+      <label className="block text-sm font-medium text-gray-700">
+        {data.name}
+      </label>
+      <Controller
+        control={control}
+        name={data.name.toLowerCase()}
+        defaultValue={data.default}
+        render={({ field: { onChange } }) => (
+          <TextField defaultValue={data.default} id="outlined-basic" onChange={onChange}/>
+        )}
+      />
+    </div>
+  )
+}
+
 export function Form({
   method,
   setApiLoading,
@@ -166,6 +202,10 @@ export function Form({
       } else if (formOptions[key].type == "slider") {
         componentList[formOptions[key].place - 1] = (
           <Slider data={formOptions[key]} control={control} />
+        )
+      } else if (formOptions[key].type == "text") {
+        componentList[formOptions[key].place - 1] = (
+          <Text data={formOptions[key]} control={control} />
         )
       }
     }
