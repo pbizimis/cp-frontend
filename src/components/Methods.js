@@ -92,9 +92,26 @@ function Method({ id, onClick, getAccessTokenSilently, methods }) {
             getAccessTokenSilently={getAccessTokenSilently}
           />
           {apiLoading === true && <h1>Loading</h1>}
-          {apiData !== null && (
+          {apiData !== null && Object.keys(apiData).length == 2 &&(
             <div>
-              <img src={apiData.image_url} />
+              <img src={apiData.url_prefix + apiData.result_image} />
+            </div>
+          )}
+          
+          {apiData !== null && Object.keys(apiData).length == 4 &&(
+            <div>
+            <div>
+              Result Image
+              <img src={apiData.url_prefix + apiData.result_image} />
+            </div>
+            <div>
+              Row Image
+              <img src={apiData.url_prefix + apiData.row_image} />
+            </div>
+            <div>
+              Col Image
+              <img src={apiData.url_prefix + apiData.col_image} />
+            </div>
             </div>
           )}
         </motion.div>
