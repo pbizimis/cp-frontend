@@ -3,11 +3,11 @@ import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react"
 import { Loading } from "../../components/Loading"
 import { Nav } from "../../components/Nav"
 import { Link } from "gatsby"
+import { UserImages } from "../../components/UserImages"
 
 const supportLinks = [
     { name: "StyleGan2ADA", href: "/console/stylegan2ada" },
-    { name: "Account balance", href: "#" },
-    { name: "Account balance", href: "#" },
+    { name: "Other Version", href: "#" },
 ]
 
 const Console = () => {
@@ -93,6 +93,9 @@ const Console = () => {
                         </div>
                     </section>
                 </div>
+            </section>
+            <section className="max-w-7xl m-auto mt-24">
+                <UserImages />
             </section>
         </div>
     )
