@@ -44,7 +44,7 @@ function ModelOverview({ modelName, modelData, urlPrefix }) {
       <Disclosure>
         {({ open }) => (
           <>
-            <Disclosure.Button className="mx-4 mt-1 p-1 text-sm font-medium text-left text-purple-900 bg-purple-100 rounded-lg hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+            <Disclosure.Button className="mx-4 p-1 text-sm font-medium text-left text-purple-900 bg-purple-100 rounded-lg hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
               <PlusIcon
                 className={`${
                   open ? "transform rotate-45" : ""
