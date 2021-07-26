@@ -182,7 +182,7 @@ export const UserImages = ({ onChange, radioForm }) => {
   const [urlPrefix, setUrlPrefix] = useState(null)
   const { getAccessTokenSilently } = useAuth0()
 
-  const url = "http://localhost:8000/api/v1/user/images"
+  const url = process.env.GATSBY_AUDIENCE + "/api/v1/user/images"
 
   const fetchData = async () => {
     const state = await postApi(null, url, getAccessTokenSilently)
