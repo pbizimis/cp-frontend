@@ -192,7 +192,7 @@ function UserImagesDisclosure({ currentImage, onChange, radioForm }) {
                 <PencilIcon className="absolute hover:opacity-80 hover:bg-opacity-50 hover:bg-purple-400 opacity-0 p-24" />
                 <img
                   src={
-                    process.env.IMAGE_BUCKET +
+                    process.env.GATSBY_IMAGE_BUCKET +
                     currentImage
                   }
                 />
