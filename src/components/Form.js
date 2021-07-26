@@ -332,14 +332,17 @@ export function Form({
         componentList[formOptions[key].place - 1] = (
           <Slider data={formOptions[key]} control={control} />
         )
-      } else if (formOptions[key].type == "text") {
+      } else if (formOptions[key].type == "seed_or_image") {
         componentList[formOptions[key].place - 1] = (
-          // change naming
           <ToggleTextOrImage
             data={formOptions[key]}
             control={control}
             reset={setValue}
           />
+        )
+      } else if (formOptions[key].type == "text") {
+        componentList[formOptions[key].place - 1] = (
+          <Text data={formOptions[key]} control={control} />
         )
       }
     }
