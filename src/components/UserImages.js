@@ -4,6 +4,7 @@ import { postApi } from "../utils/use-api"
 import { Disclosure } from "@headlessui/react"
 import { PlusIcon } from "@heroicons/react/solid"
 import { motion } from "framer-motion"
+import { RadioGroup } from "@headlessui/react"
 
 function sortImages(images) {
   let sortedImages = {}
@@ -35,7 +36,14 @@ function sortImages(images) {
   return sortedImages
 }
 
-function ModelOverview({ modelName, modelData, urlPrefix }) {
+function ModelOverview({
+  modelName,
+  modelData,
+  urlPrefix,
+  onChange,
+  radioForm,
+}) {
+  const [selected, setSelected] = useState(null)
   return (
     <div className="mb-6">
       <h1 className="text-xl font-normal mb-4 text-black float-left">
@@ -52,21 +60,56 @@ function ModelOverview({ modelName, modelData, urlPrefix }) {
               />
             </Disclosure.Button>
             <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
-              <motion.ul
-                animate={{ opacity: 1 }}
-                initial={{ opacity: 0 }}
-                transition={{ duration: 1.5 }}
-                className="grid grid-cols-1 lg:gap-x-12 gap-y-12 sm:grid-cols-2 lg:grid-cols-3 overflow-hidden"
-              >
-                {modelData.map(image => (
-                  <li key={image.url} className="col-span-1 bg-white">
-                    <img
-                      className="p-2 shadow-lg m-auto"
-                      src={urlPrefix + image.url}
-                    ></img>
-                  </li>
-                ))}
-              </motion.ul>
+              {radioForm && (
+                <RadioGroup
+                  value={selected}
+                  onChange={e => {
+                    onChange(e)
+                    setSelected(e)
+                  }}
+                >
+                  <motion.ul
+                    animate={{ opacity: 1 }}
+                    initial={{ opacity: 0 }}
+                    transition={{ duration: 1.5 }}
+                    className="grid grid-cols-1 lg:gap-x-12 gap-y-12 sm:grid-cols-2 lg:grid-cols-3 overflow-hidden"
+                  >
+                    {modelData.map(image => (
+                      <RadioGroup.Option key={image.url} value={image.url}>
+                        {({ checked }) => (
+                          <li key={image.url} className="col-span-1 bg-white">
+                            <img
+                              className={
+                                checked
+                                  ? "p-2 shadow-lg m-auto bg-green-400"
+                                  : "p-2 shadow-lg m-auto bg-white"
+                              }
+                              src={urlPrefix + image.url}
+                            />
+                          </li>
+                        )}
+                      </RadioGroup.Option>
+                    ))}
+                  </motion.ul>
+                </RadioGroup>
+              )}
+              {!radioForm && (
+                <motion.ul
+                  animate={{ opacity: 1 }}
+                  initial={{ opacity: 0 }}
+                  transition={{ duration: 1.5 }}
+                  className="grid grid-cols-1 lg:gap-x-12 gap-y-12 sm:grid-cols-2 lg:grid-cols-3 overflow-hidden"
+                >
+                  {modelData.map(image => (
+                    <li key={image.url} className="col-span-1 bg-white">
+                      <img
+                        className="p-2 shadow-lg m-auto"
+                        src={urlPrefix + image.url}
+                      ></img>
+                    </li>
+                  ))}
+                </motion.ul>
+              )}
             </Disclosure.Panel>
           </>
         )}
@@ -75,7 +118,13 @@ function ModelOverview({ modelName, modelData, urlPrefix }) {
   )
 }
 
-function VersionOverview({ versionName, versionData, urlPrefix }) {
+function VersionOverview({
+  versionName,
+  versionData,
+  urlPrefix,
+  onChange,
+  radioForm,
+}) {
   let modelOverviews = []
 
   for (let model in versionData) {
@@ -84,6 +133,8 @@ function VersionOverview({ versionName, versionData, urlPrefix }) {
         modelName={model}
         modelData={versionData[model]}
         urlPrefix={urlPrefix}
+        onChange={onChange}
+        radioForm={radioForm}
       />
     )
   }
@@ -126,7 +177,7 @@ function VersionOverview({ versionName, versionData, urlPrefix }) {
   )
 }
 
-export const UserImages = () => {
+export const UserImages = ({ onChange, radioForm }) => {
   const [data, setData] = useState(false)
   const [urlPrefix, setUrlPrefix] = useState(null)
   const { getAccessTokenSilently } = useAuth0()
@@ -145,7 +196,7 @@ export const UserImages = () => {
 
   if (!data) {
     return (
-      <div className="bg-white flex justify-center items-center">
+      <div className="bg-white flex justify-center items-center h-full">
         <div class="flex items-center justify-center w-full h-full">
           <div class="flex justify-center items-center text-gray-500">
             <svg
@@ -175,6 +226,8 @@ export const UserImages = () => {
         versionName={version}
         versionData={data[version]}
         urlPrefix={urlPrefix}
+        onChange={onChange}
+        radioForm={radioForm}
       />
     )
   }

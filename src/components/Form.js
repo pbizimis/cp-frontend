@@ -1,10 +1,11 @@
 import React, { Fragment, useState } from "react"
-import { Listbox, Transition } from "@headlessui/react"
-import { CheckIcon, SelectorIcon } from "@heroicons/react/solid"
+import { Listbox, Transition, Disclosure } from "@headlessui/react"
+import { CheckIcon, SelectorIcon, PencilIcon } from "@heroicons/react/solid"
 import { DiscreteSlider } from "./Slider"
 import { postApi } from "../utils/use-api"
 import { useForm, Controller } from "react-hook-form"
-import TextField from '@material-ui/core/TextField';
+import TextField from "@material-ui/core/TextField"
+import { UserImages } from "./UserImages"
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ")
@@ -33,12 +34,15 @@ function Dropdown({ data, control }) {
               <>
                 <div className="mt-1 relative">
                   <Listbox.Button className="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                    {data.name.toLowerCase() == "model" && 
-                      <span className="block truncate">Model ({selected.img}k images, Resolution {selected.res}, FID {selected.fid})</span>
-                    }
-                    {data.name.toLowerCase() != "model" && 
+                    {data.name.toLowerCase() == "model" && (
+                      <span className="block truncate">
+                        Model ({selected.img}k images, Resolution {selected.res}
+                        , FID {selected.fid})
+                      </span>
+                    )}
+                    {data.name.toLowerCase() != "model" && (
                       <span className="block truncate">{selected}</span>
-                    }
+                    )}
                     <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                       <SelectorIcon
                         className="h-5 w-5 text-gray-400"
@@ -73,17 +77,18 @@ function Dropdown({ data, control }) {
                         >
                           {({ selected, active }) => (
                             <>
-                              {data.name.toLowerCase() == "model" && 
+                              {data.name.toLowerCase() == "model" && (
                                 <span
                                   className={classNames(
                                     selected ? "font-semibold" : "font-normal",
                                     "block truncate"
                                   )}
                                 >
-                                  Model ({option.img}k images, Resolution {option.res}, FID {option.fid})
+                                  Model ({option.img}k images, Resolution{" "}
+                                  {option.res}, FID {option.fid})
                                 </span>
-                              }
-                              {data.name.toLowerCase() != "model" && 
+                              )}
+                              {data.name.toLowerCase() != "model" && (
                                 <span
                                   className={classNames(
                                     selected ? "font-semibold" : "font-normal",
@@ -92,7 +97,7 @@ function Dropdown({ data, control }) {
                                 >
                                   {option}
                                 </span>
-                              }
+                              )}
 
                               {selected ? (
                                 <span
@@ -158,9 +163,134 @@ function Text({ data, control }) {
         name={data.name.toLowerCase()}
         defaultValue={data.default}
         render={({ field: { onChange } }) => (
-          <TextField defaultValue={data.default} id="outlined-basic" onChange={onChange}/>
+          <>
+            <TextField
+              defaultValue={data.default}
+              id="outlined-basic"
+              onChange={onChange}
+            />
+          </>
         )}
       />
+    </div>
+  )
+}
+
+function UserImagesDisclosure({ currentImage, onChange, radioForm }) {
+  return (
+    <div className="sm:col-span-6">
+      <Disclosure>
+        {({ open }) => (
+          <>
+            {!currentImage && (
+              <Disclosure.Button className="mt-1 p-1 text-sm font-medium text-left text-purple-900 bg-purple-100 rounded-lg hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+                <span>Choose from personal collection</span>
+              </Disclosure.Button>
+            )}
+            {currentImage && (
+              <Disclosure.Button className="relative mt-1 p-1 text-sm font-medium text-left text-purple-900 bg-purple-100 rounded-lg hover:bg-purple-600 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+                <PencilIcon className="absolute hover:opacity-80 hover:bg-opacity-50 hover:bg-purple-400 opacity-0 p-24" />
+                <img
+                  src={
+                    "https://storage.googleapis.com/stylegan-images/" +
+                    currentImage
+                  }
+                />
+              </Disclosure.Button>
+            )}
+            <Disclosure.Panel className="fixed inset-0 bg-red-800 bg-opacity-20 z-50 flex justify-center items-center">
+              <div className="relative w-10/12 bg-white p-12 rounded-lg h-1/2">
+                <Disclosure.Button className="absolute right-2 top-6 mx-4 p-1 text-sm font-medium text-left text-purple-900 bg-purple-100 rounded-lg hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+                  <span>Close</span>
+                </Disclosure.Button>
+                <div className="overflow-y-auto h-full">
+                  <UserImages onChange={onChange} radioForm={radioForm} />
+                </div>
+              </div>
+            </Disclosure.Panel>
+          </>
+        )}
+      </Disclosure>
+    </div>
+  )
+}
+
+function ToggleTextOrImage({ data, control, reset }) {
+  const [enabled, setEnabled] = useState(false)
+  const [currentImage, setCurrentImage] = useState("")
+
+  return (
+    <div className="sm:col-span-6">
+      <label className="block text-sm font-medium text-gray-700">
+        {data.name.replace("_", " ")}
+      </label>
+      <div className="-mb-px flex space-x-8" aria-label="Tabs">
+        <a
+          onClick={() => {
+            setEnabled(true)
+            setCurrentImage("")
+            if (!enabled) {
+              reset(data.name.toLowerCase(), "")
+            }
+          }}
+          className={classNames(
+            enabled
+              ? "border-indigo-500 text-indigo-600"
+              : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300",
+            "whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm cursor-pointer"
+          )}
+        >
+          Seed
+        </a>
+        <a
+          onClick={() => {
+            setEnabled(false)
+            if (enabled) {
+              setCurrentImage("")
+              reset(data.name.toLowerCase(), "")
+            }
+          }}
+          className={classNames(
+            !enabled
+              ? "border-indigo-500 text-indigo-600"
+              : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300",
+            "whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm cursor-pointer"
+          )}
+        >
+          Image
+        </a>
+      </div>
+      <div className="sm:col-span-6">
+        <Controller
+          control={control}
+          name={data.name.toLowerCase()}
+          render={({ field: { onChange } }) => (
+            <>
+              {enabled && (
+                <TextField
+                  defaultValue={data.default}
+                  id="outlined-basic"
+                  onChange={e => {
+                    onChange(e)
+                  }}
+                />
+              )}
+              {!enabled && (
+                <div className="flex">
+                  <UserImagesDisclosure
+                    currentImage={currentImage}
+                    onChange={e => {
+                      onChange(e)
+                      setCurrentImage(e)
+                    }}
+                    radioForm={true}
+                  />
+                </div>
+              )}
+            </>
+          )}
+        />
+      </div>
     </div>
   )
 }
@@ -171,7 +301,7 @@ export function Form({
   setApiData,
   getAccessTokenSilently,
 }) {
-  const { control, handleSubmit } = useForm()
+  const { control, handleSubmit, setValue } = useForm()
 
   const url = method.url
 
@@ -184,17 +314,16 @@ export function Form({
   }
 
   function buildForm() {
-    let formOptions = method.method_options;
-
+    let formOptions = method.method_options
     let componentList = new Array(Object.keys(formOptions).length - 1).fill(0)
 
     for (var key in formOptions) {
       if (formOptions[key].type == "dropdown") {
-        let options = [];
+        let options = []
         formOptions[key].options.map(model => {
           options.push(model)
         })
-        formOptions[key].options = options;
+        formOptions[key].options = options
 
         componentList[formOptions[key].place - 1] = (
           <Dropdown data={formOptions[key]} control={control} />
@@ -205,7 +334,12 @@ export function Form({
         )
       } else if (formOptions[key].type == "text") {
         componentList[formOptions[key].place - 1] = (
-          <Text data={formOptions[key]} control={control} />
+          // change naming
+          <ToggleTextOrImage
+            data={formOptions[key]}
+            control={control}
+            reset={setValue}
+          />
         )
       }
     }
@@ -222,7 +356,9 @@ export function Form({
       <div className="space-y-8 divide-y divide-gray-200">
         <div>
           <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-            {buildForm().map(component => (<>{ component }</>))}
+            {buildForm().map(component => (
+              <>{component}</>
+            ))}
           </div>
         </div>
       </div>
