@@ -1,13 +1,8 @@
 import React, { useState } from "react"
 import { AnimateSharedLayout, AnimatePresence, motion } from "framer-motion"
 import {
-  AcademicCapIcon,
   BadgeCheckIcon,
-  CashIcon,
-  ClockIcon,
-  ReceiptRefundIcon,
-  UsersIcon,
-  XIcon,
+  XIcon
 } from "@heroicons/react/outline"
 import { Form } from "./Form"
 import { Loading } from "./Loading"
@@ -92,25 +87,25 @@ function Method({ id, onClick, getAccessTokenSilently, methods }) {
             getAccessTokenSilently={getAccessTokenSilently}
           />
           {apiLoading === true && <h1>Loading</h1>}
-          {apiData !== null && Object.keys(apiData).length == 2 &&(
+          {apiData !== null && Object.keys(apiData).length === 2 &&(
             <div>
-              <img src={apiData.url_prefix + apiData.result_image} />
+              <img alt="" src={apiData.url_prefix + apiData.result_image} />
             </div>
           )}
           
-          {apiData !== null && Object.keys(apiData).length == 4 &&(
+          {apiData !== null && Object.keys(apiData).length === 4 &&(
             <div>
             <div>
               Result Image
-              <img src={apiData.url_prefix + apiData.result_image} />
+              <img alt="" src={apiData.url_prefix + apiData.result_image} />
             </div>
             <div>
               Row Image
-              <img src={apiData.url_prefix + apiData.row_image} />
+              <img alt="" src={apiData.url_prefix + apiData.row_image} />
             </div>
             <div>
               Col Image
-              <img src={apiData.url_prefix + apiData.col_image} />
+              <img alt="" src={apiData.url_prefix + apiData.col_image} />
             </div>
             </div>
           )}

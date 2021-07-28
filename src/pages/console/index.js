@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react"
 import { Loading } from "../../components/Loading"
 import { Nav } from "../../components/Nav"

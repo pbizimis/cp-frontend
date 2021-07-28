@@ -34,13 +34,13 @@ function Dropdown({ data, control }) {
               <>
                 <div className="mt-1 relative">
                   <Listbox.Button className="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                    {data.name.toLowerCase() == "model" && (
+                    {data.name.toLowerCase() === "model" && (
                       <span className="block truncate">
                         Model ({selected.img}k images, Resolution {selected.res}
                         , FID {selected.fid})
                       </span>
                     )}
-                    {data.name.toLowerCase() != "model" && (
+                    {data.name.toLowerCase() !== "model" && (
                       <span className="block truncate">{selected}</span>
                     )}
                     <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
@@ -77,7 +77,7 @@ function Dropdown({ data, control }) {
                         >
                           {({ selected, active }) => (
                             <>
-                              {data.name.toLowerCase() == "model" && (
+                              {data.name.toLowerCase() === "model" && (
                                 <span
                                   className={classNames(
                                     selected ? "font-semibold" : "font-normal",
@@ -88,7 +88,7 @@ function Dropdown({ data, control }) {
                                   {option.res}, FID {option.fid})
                                 </span>
                               )}
-                              {data.name.toLowerCase() != "model" && (
+                              {data.name.toLowerCase() !== "model" && (
                                 <span
                                   className={classNames(
                                     selected ? "font-semibold" : "font-normal",
@@ -190,7 +190,7 @@ function UserImagesDisclosure({ currentImage, onChange, radioForm }) {
             {currentImage && (
               <Disclosure.Button className="relative mt-1 p-1 text-sm font-medium text-left text-purple-900 bg-purple-100 rounded-lg hover:bg-purple-600 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
                 <PencilIcon className="absolute hover:opacity-80 hover:bg-opacity-50 hover:bg-purple-400 opacity-0 p-24" />
-                <img
+                <img alt=""
                   src={
                     process.env.GATSBY_IMAGE_BUCKET +
                     currentImage
@@ -225,7 +225,7 @@ function ToggleTextOrImage({ data, control, reset }) {
         {data.name.replace("_", " ")}
       </label>
       <div className="-mb-px flex space-x-8" aria-label="Tabs">
-        <a
+        <button
           onClick={() => {
             setEnabled(true)
             setCurrentImage("")
@@ -241,8 +241,8 @@ function ToggleTextOrImage({ data, control, reset }) {
           )}
         >
           Seed
-        </a>
-        <a
+        </button>
+        <button
           onClick={() => {
             setEnabled(false)
             if (enabled) {
@@ -258,7 +258,7 @@ function ToggleTextOrImage({ data, control, reset }) {
           )}
         >
           Image
-        </a>
+        </button>
       </div>
       <div className="sm:col-span-6">
         <Controller
@@ -318,21 +318,21 @@ export function Form({
     let componentList = new Array(Object.keys(formOptions).length - 1).fill(0)
 
     for (var key in formOptions) {
-      if (formOptions[key].type == "dropdown") {
+      if (formOptions[key].type === "dropdown") {
         let options = []
-        formOptions[key].options.map(model => {
+        formOptions[key].options.map(model => (
           options.push(model)
-        })
+        ))
         formOptions[key].options = options
 
         componentList[formOptions[key].place - 1] = (
           <Dropdown data={formOptions[key]} control={control} />
         )
-      } else if (formOptions[key].type == "slider") {
+      } else if (formOptions[key].type === "slider") {
         componentList[formOptions[key].place - 1] = (
           <Slider data={formOptions[key]} control={control} />
         )
-      } else if (formOptions[key].type == "seed_or_image") {
+      } else if (formOptions[key].type === "seed_or_image") {
         componentList[formOptions[key].place - 1] = (
           <ToggleTextOrImage
             data={formOptions[key]}
@@ -340,7 +340,7 @@ export function Form({
             reset={setValue}
           />
         )
-      } else if (formOptions[key].type == "text") {
+      } else if (formOptions[key].type === "text") {
         componentList[formOptions[key].place - 1] = (
           <Text data={formOptions[key]} control={control} />
         )
