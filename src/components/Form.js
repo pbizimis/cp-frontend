@@ -224,7 +224,8 @@ function ToggleTextOrImage({ data, control, reset }) {
       </label>
       <div className="-mb-px flex space-x-8" aria-label="Tabs">
         <button
-          onClick={() => {
+          onClick={(e) => {
+            e.preventDefault()
             setEnabled(true)
             setCurrentImage("")
             if (!enabled) {
@@ -241,7 +242,8 @@ function ToggleTextOrImage({ data, control, reset }) {
           Seed
         </button>
         <button
-          onClick={() => {
+          onClick={(e) => {
+            e.preventDefault()
             setEnabled(false)
             if (enabled) {
               setCurrentImage("")
