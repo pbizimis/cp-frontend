@@ -13,10 +13,14 @@ const StyleGan2ADA = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const state = await postApi(null, url_prefix + "methods", getAccessTokenSilently)
+      const state = await postApi(
+        null,
+        url_prefix + "methods",
+        getAccessTokenSilently
+      )
       setData(state.data)
     }
-      fetchData();
+    fetchData()
   }, [getAccessTokenSilently, url_prefix])
 
   if (isLoading) {
@@ -24,11 +28,15 @@ const StyleGan2ADA = () => {
   }
 
   return (
-    <div className="min-h-screen overflow-hidden">
+    <div className="h-screen">
       <Nav />
 
-      <section className="max-w-7xl m-auto mt-24">
-        <Methods getAccessTokenSilently={getAccessTokenSilently} data={data} url_prefix={url_prefix}/>
+      <section className="max-w-7xl m-auto mt-12">
+        <Methods
+          getAccessTokenSilently={getAccessTokenSilently}
+          data={data}
+          url_prefix={url_prefix}
+        />
       </section>
     </div>
   )

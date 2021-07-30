@@ -190,11 +190,9 @@ function UserImagesDisclosure({ currentImage, onChange, radioForm }) {
             {currentImage && (
               <Disclosure.Button className="relative mt-1 p-1 text-sm font-medium text-left text-purple-900 bg-purple-100 rounded-lg hover:bg-purple-600 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
                 <PencilIcon className="absolute hover:opacity-80 hover:bg-opacity-50 hover:bg-purple-400 opacity-0 p-24" />
-                <img alt=""
-                  src={
-                    process.env.GATSBY_IMAGE_BUCKET +
-                    currentImage
-                  }
+                <img
+                  alt=""
+                  src={process.env.GATSBY_IMAGE_BUCKET + currentImage}
                 />
               </Disclosure.Button>
             )}
@@ -320,9 +318,7 @@ export function Form({
     for (var key in formOptions) {
       if (formOptions[key].type === "dropdown") {
         let options = []
-        formOptions[key].options.map(model => (
-          options.push(model)
-        ))
+        formOptions[key].options.map(model => options.push(model))
         formOptions[key].options = options
 
         componentList[formOptions[key].place - 1] = (
@@ -351,12 +347,12 @@ export function Form({
 
   return (
     <form
-      className="space-y-8 divide-y divide-gray-200 max-w-7xl m-auto mt-24"
+      className="space-y-4 max-w-7xl m-auto h-full flex flex-col overflow-hidden"
       onSubmit={handleSubmit(
         async (data, event) => await fetchData(data, event, url)
       )}
     >
-      <div className="space-y-8 divide-y divide-gray-200">
+      <div className="overflow-y-auto pr-2 pl-2 pb-6 border-gray-200 border-4 rounded-md">
         <div>
           <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
             {buildForm().map(component => (
@@ -366,15 +362,13 @@ export function Form({
         </div>
       </div>
 
-      <div className="pt-5 max-w-7xl m-auto">
-        <div className="flex justify-end">
-          <button
-            type="submit"
-            className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
-            Generate
-          </button>
-        </div>
+      <div className="max-w-7xl m-auto">
+        <button
+          type="submit"
+          className="py-2 px-4 text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        >
+          Generate
+        </button>
       </div>
     </form>
   )
