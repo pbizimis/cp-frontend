@@ -3,7 +3,7 @@ import Slider from '@material-ui/core/Slider';
 
 
 function valuetext(value) {
-  return `${value}°C`;
+  return `${value}`;
 }
 
 export function DiscreteSlider({ defaultValue, min, max, step, onChange }) {
