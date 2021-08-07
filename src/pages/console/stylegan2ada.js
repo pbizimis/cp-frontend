@@ -18,7 +18,9 @@ const StyleGan2ADA = () => {
         url_prefix + "methods",
         getAccessTokenSilently
       )
-      setData(state.data)
+      if (state.data) {
+        setData(state.data)
+      }
     }
     fetchData()
   }, [getAccessTokenSilently, url_prefix])
