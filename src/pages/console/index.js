@@ -1,19 +1,33 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react"
 import { Loading } from "../../components/Loading"
 import { Nav } from "../../components/Nav"
 import { Link } from "gatsby"
 import { UserImages } from "../../components/UserImages"
-
-const supportLinks = [
-  { name: "StyleGan2ADA", href: "/console/stylegan2ada" },
-  { name: "Other Version", href: "#" },
-]
+import { postApi } from "../../utils/use-api"
 
 const Console = () => {
-  const { isLoading } = useAuth0()
 
-  if (isLoading) {
+  const [data, setData] = useState(false)
+  const { isLoading, getAccessTokenSilently } = useAuth0()
+
+  const url = process.env.GATSBY_AUDIENCE + "/api/v1/models/"
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const state = await postApi(
+        null,
+        url,
+        getAccessTokenSilently
+      )
+      if (state.data && "stylegan_models" in state.data) {
+        setData(state.data.stylegan_models)
+      }
+    }
+    fetchData()
+  }, [getAccessTokenSilently, url])
+
+  if (isLoading || !data) {
     return <Loading />
   }
 
@@ -59,10 +73,9 @@ const Console = () => {
                   Overview
                 </h2>
                 <div className="mt-2 grid grid-cols-1 gap-5 lg:gap-12 sm:grid-cols-2 lg:grid-cols-3">
-                  {/* Card */}
-                  {supportLinks.map(card => (
+                  {data.map(stylegan => (
                     <div
-                      key={card.name}
+                      key={stylegan.version}
                       className="bg-white overflow-hidden shadow rounded-lg"
                     >
                       <div className="p-5">
@@ -70,7 +83,7 @@ const Console = () => {
                           <div className="w-0 flex-1">
                             <dl>
                               <dt className="text-sm font-medium text-gray-500 truncate">
-                                {card.name}
+                                {stylegan.version}
                               </dt>
                             </dl>
                           </div>
@@ -79,7 +92,7 @@ const Console = () => {
                       <div className="bg-gray-50 px-5 py-3">
                         <div className="text-sm">
                           <Link
-                            to={card.href}
+                            to={stylegan.version.toLowerCase()}
                             className="font-medium text-cyan-700 hover:text-cyan-900"
                           >
                             View all
