@@ -1,4 +1,4 @@
-export const postApi = async (data, url, getAccessTokenSilently) => {
+export const postApi = async (data, url, getAccessTokenSilently, method = "POST") => {
     let state = {
         error: null,
         data: null
@@ -9,7 +9,7 @@ export const postApi = async (data, url, getAccessTokenSilently) => {
         const accessToken = await getAccessTokenSilently({ audience, scope });
 
         let fetchObject = data ? {
-          method: "POST",
+          method: method,
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${accessToken}`,

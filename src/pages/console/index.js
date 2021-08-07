@@ -108,7 +108,7 @@ const Console = () => {
         </div>
       </section>
       <section className="max-w-7xl m-auto mt-24">
-        <UserImages radioForm={false} />
+        <UserImages radioForm={false} enableDeletion={true} />
       </section>
     </div>
   )
