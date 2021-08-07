@@ -11,7 +11,7 @@ const Console = () => {
   const [data, setData] = useState(false)
   const { isLoading, getAccessTokenSilently } = useAuth0()
 
-  const url = process.env.GATSBY_AUDIENCE + "/api/v1/models/"
+  const url = process.env.GATSBY_AUDIENCE + "/api/v1/models"
 
   useEffect(() => {
     const fetchData = async () => {
