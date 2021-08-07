@@ -170,7 +170,11 @@ export function VersionOverview({
                 initial={{ height: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                {modelOverviews}
+                {modelOverviews.map((modelOverview, index) => (
+                  <React.Fragment key={index}>
+                      { modelOverview }
+                  </React.Fragment>
+                ))}
               </motion.div>
             </Disclosure.Panel>
           </>
@@ -190,8 +194,10 @@ export const UserImages = ({ onChange, radioForm }) => {
   useEffect(() => {
     const fetchData = async () => {
       const state = await postApi(null, url, getAccessTokenSilently)
-      setData(sortImages(state.data))
-      setUrlPrefix(state.data.image_url_prefix)
+      if (state.data && "image_url_prefix" in state.data && "image_ids" in state.data) {
+        setData(sortImages(state.data))
+        setUrlPrefix(state.data.image_url_prefix)
+      }
     }
     fetchData();
   }, [getAccessTokenSilently, url])
@@ -211,7 +217,7 @@ export const UserImages = ({ onChange, radioForm }) => {
                 clipRule="evenodd"
                 d="M15.165 8.53a.5.5 0 01-.404.58A7 7 0 1023 16a.5.5 0 011 0 8 8 0 11-9.416-7.874.5.5 0 01.58.404z"
                 fill="currentColor"
-                fill-rule="evenodd"
+                fillRule="evenodd"
               />
             </svg>
           </div>
@@ -221,7 +227,6 @@ export const UserImages = ({ onChange, radioForm }) => {
   }
 
   let imagesOverview = []
-
   for (let version in data) {
     imagesOverview.push(
       <VersionOverview
@@ -237,7 +242,11 @@ export const UserImages = ({ onChange, radioForm }) => {
   return (
     <div>
       <h1 className="text-4xl font-normal text-center">Your Images</h1>
-      {imagesOverview}
+      {imagesOverview.map((component, index) => (
+          <React.Fragment key={index}>
+              { component }
+          </React.Fragment>
+        ))}
     </div>
   )
 }
