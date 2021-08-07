@@ -7,11 +7,11 @@ import { useForm, Controller } from "react-hook-form"
 import TextField from "@material-ui/core/TextField"
 import { UserImages } from "./UserImages"
 
-function classNames(...classes) {
+export function classNames(...classes) {
   return classes.filter(Boolean).join(" ")
 }
 
-function Dropdown({ data, control }) {
+export function Dropdown({ data, control }) {
   const [selected, setSelected] = useState(data.options[data.default])
   return (
     <div className="sm:col-span-6">
@@ -128,7 +128,7 @@ function Dropdown({ data, control }) {
   )
 }
 
-function Slider({ data, control }) {
+export function Slider({ data, control }) {
   return (
     <div className="sm:col-span-6">
       <label className="block text-sm font-medium text-gray-700">
@@ -152,7 +152,7 @@ function Slider({ data, control }) {
   )
 }
 
-function Text({ data, control }) {
+export function Text({ data, control }) {
   return (
     <div className="sm:col-span-6">
       <label className="block text-sm font-medium text-gray-700">
@@ -176,7 +176,7 @@ function Text({ data, control }) {
   )
 }
 
-function UserImagesDisclosure({ currentImage, onChange, radioForm }) {
+export function UserImagesDisclosure({ currentImage, onChange, radioForm }) {
   return (
     <div className="sm:col-span-6">
       <Disclosure>
@@ -213,7 +213,7 @@ function UserImagesDisclosure({ currentImage, onChange, radioForm }) {
   )
 }
 
-function ToggleTextOrImage({ data, control, reset }) {
+export function ToggleTextOrImage({ data, control, reset }) {
   const [enabled, setEnabled] = useState(false)
   const [currentImage, setCurrentImage] = useState("")
 

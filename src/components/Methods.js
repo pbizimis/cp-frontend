@@ -8,7 +8,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ")
 }
 
-function Method({ id, onClick, getAccessTokenSilently, methods }) {
+export function Method({ id, onClick, getAccessTokenSilently, methods }) {
   const model = methods.find(model => model.name === id)
   const [apiLoading, setApiLoading] = useState(false)
   const [apiData, setApiData] = useState(null)

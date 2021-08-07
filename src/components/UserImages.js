@@ -6,7 +6,7 @@ import { PlusIcon } from "@heroicons/react/solid"
 import { motion } from "framer-motion"
 import { RadioGroup } from "@headlessui/react"
 
-function sortImages(images) {
+export function sortImages(images) {
   let sortedImages = {}
   images.image_ids.map(image => {
     const imageModelVersion = image.method.model.version
@@ -37,7 +37,7 @@ function sortImages(images) {
   return sortedImages
 }
 
-function ModelOverview({
+export function ModelOverview({
   modelName,
   modelData,
   urlPrefix,
@@ -121,7 +121,7 @@ function ModelOverview({
   )
 }
 
-function VersionOverview({
+export function VersionOverview({
   versionName,
   versionData,
   urlPrefix,

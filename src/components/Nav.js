@@ -10,7 +10,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ")
 }
 
-function DotMenu({ logout, name }) {
+export function DotMenu({ logout, name }) {
   return (
     <Menu as="div" className="relative inline-block text-left">
       {({ open }) => (
