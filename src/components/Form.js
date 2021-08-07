@@ -64,7 +64,7 @@ export function Dropdown({ data, control }) {
                     >
                       {data.options.map(option => (
                         <Listbox.Option
-                          key={option}
+                          key={option.img + option.res + option.fid}
                           className={({ active }) =>
                             classNames(
                               active
@@ -357,8 +357,8 @@ export function Form({
       <div className="overflow-y-auto pr-2 pl-2 pb-6 border-gray-200 border-4 rounded-md">
         <div>
           <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-            {buildForm().map(component => (
-              <>{component}</>
+            {buildForm().map((component, index) => (
+              <React.Fragment key={index}>{component}</React.Fragment>
             ))}
           </div>
         </div>
