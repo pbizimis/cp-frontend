@@ -56,7 +56,7 @@ test('shows all options and the dropdown name when clicked', () => {
     render(<MockFormDropdown1 />)
     
     // simulate a click on the dropdown
-    fireEvent.click(screen.getByRole("button"))
+    fireEvent.click(screen.getByRole("button", {name: "Model (1k images, Resolution 1, FID 1)"}))
     
     expect(screen.getByText(exampleDataDropdown1.name)).toBeInTheDocument()
     expect(screen.getAllByText("Model (1k images, Resolution 1, FID 1)").length == 2)

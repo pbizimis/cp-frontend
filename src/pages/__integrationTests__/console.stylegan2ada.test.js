@@ -223,11 +223,10 @@ test('the correct posting of the form data', async () => {
     expect(await screen.findByText('Your Images')).toBeInTheDocument()
     expect(await screen.findByText('StyleGan2ADA')).toBeInTheDocument()
 
-    fireEvent.click(containerElement.querySelector('#headlessui-disclosure-button-9'))
+    fireEvent.click(screen.getByTestId("version-button"))
     expect(await screen.findByText("Model: Images 31k, Resolution 256px, FID 12")).toBeInTheDocument()
     // Await the animation and click on the new svg button
-    const svgButton = await screen.findByRole('button', {name: ""})
-    fireEvent.click(svgButton)
+    fireEvent.click(screen.getByTestId("model-button"))
     // Await the animation and click on one image
     const selectionImages = await screen.findAllByRole('img')
     fireEvent.click(selectionImages[1])

@@ -97,7 +97,7 @@ export function Nav() {
         </div>
         <Link
           to="/console"
-          className="inline-flex items-center px-3 py-1 border border-transparent text-base font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700"
+          className="inline-flex items-center px-3 py-1 border border-transparent text-base font-medium rounded-md text-white bg-green-700 hover:bg-green-800"
         >
           Console
         </Link>

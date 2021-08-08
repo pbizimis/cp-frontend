@@ -7,7 +7,6 @@ import { UserImages } from "../../components/UserImages"
 import { postApi } from "../../utils/use-api"
 
 const Console = () => {
-
   const [data, setData] = useState(false)
   const { isLoading, getAccessTokenSilently } = useAuth0()
 
@@ -15,11 +14,7 @@ const Console = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const state = await postApi(
-        null,
-        url,
-        getAccessTokenSilently
-      )
+      const state = await postApi(null, url, getAccessTokenSilently)
       if (state.data && "stylegan_models" in state.data) {
         setData(state.data.stylegan_models)
       }
@@ -38,45 +33,57 @@ const Console = () => {
       <section className="max-w-7xl m-auto mt-24">
         <div className="bg-white">
           {/* Header */}
-          <div className="relative pb-32 bg-gray-800">
+          <div className="relative pb-16 bg-gray-900 overflow-hidden">
             <div className="absolute inset-0">
-              <img
-                className="w-full h-full object-cover"
-                src="https://images.unsplash.com/photo-1525130413817-d45c1d127c42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1920&q=60&&sat=-100"
-                alt=""
-              />
-              <div
-                className="absolute inset-0 bg-gray-800 mix-blend-multiply"
-                aria-hidden="true"
-              />
+              
+            <div
+              className="absolute inset-0 bg-gradient-to-br from-green-900 to-green-400 opacity-20"
+              aria-hidden="true"
+            />
+            <svg
+              className="absolute m-2 animate-pulse"
+              fill="none"
+              viewBox="0 0 1000 1000"
+            >
+              <defs>
+                <pattern
+                  id="e229dbec-10e9-49ee-8ec3-0286ca089edf"
+                  x={0}
+                  y={0}
+                  width={20}
+                  height={20}
+                  patternUnits="userSpaceOnUse"
+                >
+                  <rect x={0} y={0} width={4} height={4} className="text-green-900 opacity-50" fill="currentColor" />
+                </pattern>
+              </defs>
+              <rect width={2000} height={2000} fill="url(#e229dbec-10e9-49ee-8ec3-0286ca089edf)" />
+            </svg>
             </div>
             <div className="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
               <h1 className="text-4xl font-extrabold tracking-tight text-white md:text-5xl lg:text-6xl">
                 StyleGan Versions
               </h1>
               <p className="mt-6 max-w-3xl text-xl text-gray-300">
-                Varius facilisi mauris sed sit. Non sed et duis dui leo,
-                vulputate id malesuada non. Cras aliquet purus dui laoreet diam
-                sed lacus, fames. Dui, amet, nec sit pulvinar.
+                Welcome to your personal <strong>WebDesigan Console</strong>! Below you can see
+                the currently supported StyleGan versions. Below that, you can
+                view your created images and delete them.
               </p>
             </div>
           </div>
 
           {/* Overlapping cards */}
           <section
-            className="-mt-32 max-w-7xl mx-auto relative z-10 px-4 lg:px-8"
+            className="-mt-24 max-w-7xl mx-auto relative z-10 px-4 lg:px-8"
             aria-labelledby="contact-heading"
           >
             <div className="mt-8">
               <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-lg leading-6 font-medium text-gray-900">
-                  Overview
-                </h2>
                 <div className="mt-2 grid grid-cols-1 gap-5 lg:gap-12 sm:grid-cols-2 lg:grid-cols-3">
                   {data.map(stylegan => (
                     <div
                       key={stylegan.version}
-                      className="bg-white overflow-hidden shadow rounded-lg"
+                      className="bg-white overflow-hidden shadow-lg rounded-lg"
                     >
                       <div className="p-5">
                         <div className="flex items-center">
@@ -95,7 +102,7 @@ const Console = () => {
                             to={stylegan.version.toLowerCase()}
                             className="font-medium text-cyan-700 hover:text-cyan-900"
                           >
-                            View all
+                            View all methods
                           </Link>
                         </div>
                       </div>

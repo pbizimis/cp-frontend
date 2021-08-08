@@ -30,7 +30,7 @@ const StyleGan2ADA = () => {
   }
 
   return (
-    <div className="h-screen">
+    <div className="h-screen bg-gray-900">
       <Nav />
 
       <section className="max-w-7xl m-auto mt-12">
@@ -39,6 +39,11 @@ const StyleGan2ADA = () => {
           data={data}
           url_prefix={url_prefix}
         />
+        <p className="text-blue-400 fixed bottom-80 right-0 left-0 text-center mb-6 opacity-10">
+          &ldquo;I kept dreaming of a world I thought I'd never see. And then,
+          one day... I got in.&rdquo;
+        </p>
+        <section className="grid-container fixed animate-pulse"></section>
       </section>
     </div>
   )

@@ -97,7 +97,7 @@ export function ModelOverview({
       <Disclosure>
         {({ open }) => (
           <>
-            <Disclosure.Button className="mx-4 p-1 text-sm font-medium text-left text-purple-900 bg-purple-100 rounded-lg hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+            <Disclosure.Button data-testid="model-button" className="mx-4 p-1 text-sm font-medium text-left text-purple-900 bg-purple-100 rounded-lg hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
               <PlusIcon
                 className={`${
                   open ? "transform rotate-45" : ""
@@ -181,7 +181,7 @@ export function VersionOverview({
       <Disclosure>
         {({ open }) => (
           <>
-            <Disclosure.Button className="mx-4 mt-1 p-1 text-sm font-medium text-left text-purple-900 bg-purple-100 rounded-lg hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+            <Disclosure.Button data-testid="version-button" className="mx-4 mt-1 p-1 text-sm font-medium text-left text-purple-900 bg-purple-100 rounded-lg hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
               <PlusIcon
                 className={`${
                   open ? "transform rotate-45" : ""
@@ -413,7 +413,7 @@ export const UserImages = ({ onChange, radioForm, enableDeletion }) => {
                   setCheckboxForm(!checkboxForm)
                   reset()
                 }}
-                className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                className="inline-flex items-center px-3 py-3 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
               >
                 {checkboxForm ? "Cancel" : "Select"}
               </button>

@@ -120,6 +120,6 @@ test('the correct working of the UserImages component', async () => {
     expect(screen.getByText("Model: Images 31k, Resolution 256px, FID 12")).toBeInTheDocument()
 
     fireEvent.click(screen.getAllByRole("button")[2])
-    // Two images for the Nav and Background and two from the fetched data
-    expect(screen.getAllByRole("img").length).toBe(4)
+    // One images for the Nav and two from the fetched data
+    expect(screen.getAllByRole("img").length).toBe(3)
 })

@@ -1,9 +1,9 @@
 import React from "react";
-import { ChevronRightIcon } from '@heroicons/react/solid';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Nav } from '../components/Nav';
 import { Loading } from '../components/Loading';
 import { Error } from '../components/AuthError';
+import Features from "../components/Features";
 
 export default function Index() {
 
@@ -25,23 +25,14 @@ export default function Index() {
               <div className="lg:grid lg:grid-cols-2 lg:gap-8">
                 <div className="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 sm:text-center lg:px-0 lg:text-left lg:flex lg:items-center">
                   <div className="lg:py-24">
-                    <a
-                      href="#"
-                      className="inline-flex items-center text-white bg-black rounded-full p-1 pr-2 sm:text-base lg:text-sm xl:text-base hover:text-gray-200"
-                    >
-                      <span className="px-3 py-0.5 text-white text-xs font-semibold leading-5 uppercase tracking-wide bg-indigo-500 rounded-full">
-                        v0.1 release
-                      </span>
-                      <span className="ml-4 text-sm">Read the annoucement</span>
-                      <ChevronRightIcon className="ml-2 w-5 h-5 text-gray-500" aria-hidden="true" />
-                    </a>
                     <h1 className="mt-4 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl">
                       <span className="block">WebDesig(a)n</span>
                       <span className="block text-indigo-400">Find Inspiration</span>
                     </h1>
                     <p className="mt-3 text-base text-gray-300 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
-                      Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui Lorem cupidatat commodo. Elit
-                      sunt amet fugiat veniam occaecat fugiat.
+                      WebDesig(a)n is a tool that leverages <strong><a href="https://thispersondoesnotexist.com/">NVIDIA's StyleGan AI</a></strong> to generate different web designs.
+                      These designs optimally help web designers to find new ideas and inspiration.
+                      The AI models are trained on thousands of website images for a diverse mix of creations.
                     </p>
                   </div>
                 </div>
@@ -58,8 +49,8 @@ export default function Index() {
               </div>
             </div>
           </div>
-
           {/* More main page content here... */}
+          <Features />
         </main>
       </div>
     </div>
