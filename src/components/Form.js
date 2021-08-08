@@ -6,6 +6,7 @@ import { postApi } from "../utils/use-api"
 import { useForm, Controller } from "react-hook-form"
 import TextField from "@material-ui/core/TextField"
 import { UserImages } from "./UserImages"
+import Flyout from "../components/Flyout"
 
 export function classNames(...classes) {
   return classes.filter(Boolean).join(" ")
@@ -15,9 +16,12 @@ export function Dropdown({ data, control }) {
   const [selected, setSelected] = useState(data.options[data.default])
   return (
     <div className="sm:col-span-6">
+      <div className="flex gap-4">
       <label className="block text-sm font-medium text-gray-700">
         {data.name}
       </label>
+      <Flyout name={data.name} description={data.description} />
+      </div>
       <Controller
         control={control}
         name={data.name.toLowerCase()}
@@ -131,9 +135,12 @@ export function Dropdown({ data, control }) {
 export function Slider({ data, control }) {
   return (
     <div className="sm:col-span-6">
+      <div className="flex gap-4">
       <label className="block text-sm font-medium text-gray-700">
         {data.name}
       </label>
+      <Flyout name={data.name} description={data.description} />
+      </div>
       <Controller
         control={control}
         name={data.name.toLowerCase()}
@@ -155,9 +162,12 @@ export function Slider({ data, control }) {
 export function Text({ data, control }) {
   return (
     <div className="sm:col-span-6">
+      <div className="flex gap-4">
       <label className="block text-sm font-medium text-gray-700">
         {data.name}
       </label>
+      <Flyout name={data.name} description={data.description} />
+      </div>
       <Controller
         control={control}
         name={data.name.toLowerCase()}
@@ -219,9 +229,12 @@ export function ToggleTextOrImage({ data, control, reset }) {
 
   return (
     <div className="sm:col-span-6">
+      <div className="flex gap-4">
       <label className="block text-sm font-medium text-gray-700">
         {data.name.replace("_", " ")}
       </label>
+      <Flyout name={data.name.replace("_", " ")} description={data.description} />
+      </div>
       <div className="-mb-px flex space-x-8" aria-label="Tabs">
         <button
           onClick={(e) => {
