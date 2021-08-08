@@ -13,6 +13,7 @@ export const wrapRootElement = ({ element }) => {
       audience={process.env.GATSBY_AUDIENCE}
       redirectUri={window.location.origin}
       onRedirectCallback={onRedirectCallback}
+      useRefreshTokens={true}
     >
       {element}
     </Auth0Provider>
