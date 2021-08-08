@@ -2,7 +2,13 @@ import React from "react"
 import { fireEvent, render, screen } from "@testing-library/react";
 import { sortImages, ModelOverview, VersionOverview, UserImages } from "../UserImages";
 import { act } from "react-dom/test-utils";
+import { RadioGroup } from "@headlessui/react"
+import { useForm } from "react-hook-form"
 
+beforeAll(() => {
+    const UserImages = require('../UserImages');
+    UserImages.ImageContainer = jest.fn().mockReturnValue(<h1>This is a mock!</h1>);
+})
 
 test('that sortImages function sorts the raw image data by stylegan version and model version', () => {
     const sortImagesData = {
@@ -209,18 +215,18 @@ const mockModelData = [
 
 // radio false
 test('that version name is displayed', () => {
-    render(<ModelOverview modelName={"Model Version 1"} modelData={mockModelData} urlPrefix={"urlPrefix"} onChange={() => {}} radioForm={false} />)
+    render(<ModelOverview modelName={"Model Version 1"} modelData={mockModelData} urlPrefix={"urlPrefix"} register={() => {}} radioForm={false} />)
     expect(screen.getByText("Model: Model Version 1")).toBeInTheDocument()
 })
 
 test('that no images are displayed in default state', () => {
-    render(<ModelOverview modelName={"Model Version 1"} modelData={mockModelData} urlPrefix={"urlPrefix"} onChange={() => {}} radioForm={false} />)
+    render(<ModelOverview modelName={"Model Version 1"} modelData={mockModelData} urlPrefix={"urlPrefix"} register={() => {}} radioForm={false} />)
     
     expect(screen.queryAllByRole("img").length).toBe(0)
 })
 
 test('that two images are displayed in default state (because of two images in data)', () => {
-    render(<ModelOverview modelName={"Model Version 1"} modelData={mockModelData} urlPrefix={"urlPrefix"} onChange={() => {}} radioForm={false} />)
+    render(<ModelOverview modelName={"Model Version 1"} modelData={mockModelData} urlPrefix={"urlPrefix"} register={() => {}} radioForm={false} />)
     
     fireEvent.click(screen.getByRole("button"))
 
@@ -233,7 +239,7 @@ test('that two images are displayed in default state (because of two images in d
 })
 
 test('that images have the correct src value', () => {
-    render(<ModelOverview modelName={"Model Version 1"} modelData={mockModelData} urlPrefix={"http://testlocalhost/"} onChange={() => {}} radioForm={false} />)
+    render(<ModelOverview modelName={"Model Version 1"} modelData={mockModelData} urlPrefix={"http://testlocalhost/"} register={() => {}} radioForm={false} />)
     
     fireEvent.click(screen.getByRole("button"))
 
@@ -245,8 +251,23 @@ test('that images have the correct src value', () => {
 
 test('that images are clickable and change the onClick function', () => {
 
-    let onChangeValue;
-    render(<ModelOverview modelName={"Model Version 1"} modelData={mockModelData} urlPrefix={"urlPrefix"} onChange={(e) => {onChangeValue = e}} radioForm={true} />)
+    let onChangeValue
+    // Mock the RadioGroup to get access on the onChange
+    render(
+      <RadioGroup
+        onChange={e => onChangeValue = e}
+      >
+        <ModelOverview
+          modelName={"Model Version 1"}
+          modelData={mockModelData}
+          urlPrefix={"urlPrefix"}
+          register={() => {}}
+          radioForm={true}
+          checkboxForm={false}
+          deleteLoading={false}
+        />
+      </RadioGroup>
+    )
     fireEvent.click(screen.getByRole("button"))
 
     // Click on one image
@@ -274,19 +295,19 @@ const mockVersionData = {
 }
 
 test('that version name is displayed', () => {
-    render(<VersionOverview versionName={"Version1.0"} versionData={mockVersionData} urlPrefix={"urlPrefix"} onChange={() => {}} radioForm={false} />)
+    render(<VersionOverview versionName={"Version1.0"} versionData={mockVersionData} urlPrefix={"urlPrefix"} register={() => {}} radioForm={false} />)
     expect(screen.getByText("Version1.0")).toBeInTheDocument()
 })
 
 test('that no models are displayed in default state', () => {
-    render(<VersionOverview versionName={"Version1.0"} versionData={mockVersionData} urlPrefix={"urlPrefix"} onChange={() => {}} radioForm={false} />)
+    render(<VersionOverview versionName={"Version1.0"} versionData={mockVersionData} urlPrefix={"urlPrefix"} register={() => {}} radioForm={false} />)
     
     expect(screen.queryByText("Model: Images 20k, Resolution 20px, FID 20")).not.toBeInTheDocument()
     expect(screen.queryByText("Model: Images 30k, Resolution 30px, FID 30")).not.toBeInTheDocument()
 })
 
 test('that models are displayed after the button click', () => {
-    render(<VersionOverview versionName={"Version1.0"} versionData={mockVersionData} urlPrefix={"urlPrefix"} onChange={() => {}} radioForm={false} />)
+    render(<VersionOverview versionName={"Version1.0"} versionData={mockVersionData} urlPrefix={"urlPrefix"} register={() => {}} radioForm={false} />)
     
     fireEvent.click(screen.getByRole("button"))
 
@@ -295,7 +316,7 @@ test('that models are displayed after the button click', () => {
 })
 
 test('that models are not displayed after the second button click (close)', () => {
-    render(<VersionOverview versionName={"Version1.0"} versionData={mockVersionData} urlPrefix={"urlPrefix"} onChange={() => {}} radioForm={false} />)
+    render(<VersionOverview versionName={"Version1.0"} versionData={mockVersionData} urlPrefix={"urlPrefix"} register={() => {}} radioForm={false} />)
     
     fireEvent.click(screen.getByRole("button"))
     fireEvent.click(screen.getAllByRole("button")[0])
@@ -358,7 +379,7 @@ test('that the label text is displayed', async () => {
     useApi.postApi = jest.fn().mockImplementation((...args) => {return mockUserImagesData});
 
     await act(async () => {
-        render(<UserImages onChange={() => {}} radioForm={false} />)
+        render(<UserImages register={() => {}} radioForm={false} />)
     })
     expect(screen.getByText("Your Images")).toBeInTheDocument()
 })
@@ -371,7 +392,7 @@ test('that the model labels are displayed in default state and two button svgs a
 
     let containerElement;
     await act(async () => {
-        let { container } = render(<UserImages onChange={() => {}} radioForm={false} />)
+        let { container } = render(<UserImages register={() => {}} radioForm={false} />)
         containerElement = container;
     })
 
@@ -388,7 +409,7 @@ test('that the loading circle is rendered when api data is fetched', async () =>
 
     let containerElement;
     await act(async () => {
-        let { container } = render(<UserImages onChange={() => {}} radioForm={false} />)
+        let { container } = render(<UserImages register={() => {}} radioForm={false} />)
         containerElement = container;
     })
 
