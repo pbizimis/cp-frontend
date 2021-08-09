@@ -47,7 +47,7 @@ export default function Features() {
               </blockquote>
             </div>
           </div>
-          <div className="mt-12 sm:mt-16 lg:mt-0">
+          <div className="mt-12 sm:mt-16 lg:mt-0 lg:col-start-1">
             <div className="max-w-xl p-2 m-auto lg:px-0 lg:m-0 lg:relative lg:h-full">
               <img
                 className="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
@@ -98,7 +98,7 @@ export default function Features() {
               </blockquote>
             </div>
           </div>
-          <div className="mt-12 sm:mt-16 lg:mt-0 lg:col-start-1">
+          <div className="mt-12 sm:mt-16 lg:mt-0">
             <div className="max-w-xl p-2 m-auto lg:px-0 lg:m-0 lg:relative lg:h-full">
               <img
                 className="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:right-0 lg:h-full lg:w-auto lg:max-w-none"
@@ -118,9 +118,15 @@ export default function Features() {
                   Can I trust this website?
                 </h2>
                 <p className="mt-4 text-lg text-gray-500">
-                    This website uses <strong><a href="https://auth0.com/">Auth0</a></strong> for authentication, which means that I never see or touch your credentials.
-                    Also, no information about you is stored in any way. Our servers are located in Europe and the creation of new images
-                    happens in the cloud. Therefore, any computer can run this tool. Have fun!
+                  This website uses{" "}
+                  <strong>
+                    <a href="https://auth0.com/">Auth0</a>
+                  </strong>{" "}
+                  for authentication, which means that I never see or touch your
+                  credentials. Also, no information about you is stored in any
+                  way. Our servers are located in Europe and the creation of new
+                  images happens in the cloud. Therefore, any computer can run
+                  this tool. Have fun!
                 </p>
               </div>
             </div>
@@ -141,8 +147,8 @@ export default function Features() {
               </blockquote>
             </div>
           </div>
-          <div className="mt-12 sm:mt-16 lg:mt-0">
-          <div className="max-w-xl p-2 m-auto lg:px-0 lg:m-0 lg:relative lg:h-full">
+          <div className="mt-12 sm:mt-16 lg:mt-0 lg:col-start-1">
+            <div className="max-w-xl p-2 m-auto lg:px-0 lg:m-0 lg:relative lg:h-full">
               <img
                 className="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
                 src="https://images.webdesigan.com/638580d812d14554b0aa5bbb42b0b4cc"
