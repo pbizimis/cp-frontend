@@ -72,7 +72,7 @@ export function ImageContainer({
           alt=""
           className={`${
             selected ? "bg-blue-200" : "bg-white"
-          } p-2 shadow-lg m-auto`}
+          } p-2 shadow-lg m-auto w-full`}
           src={urlPrefix + image.url}
         ></img>
       </label>
@@ -91,25 +91,25 @@ export function ModelOverview({
 }) {
   return (
     <div className="mb-6">
-      <h1 className="text-xl font-normal mb-4 text-black float-left">
+      <h1 className="md:text-2xl text-xl font-normal mb-4 text-black sm:float-left">
         Model: {modelName}
       </h1>
       <Disclosure>
         {({ open }) => (
           <>
-            <Disclosure.Button data-testid="model-button" className="mx-4 p-1 text-sm font-medium text-left text-purple-900 bg-purple-100 rounded-lg hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+            <Disclosure.Button data-testid="model-button" className="sm:mx-4 sm:p-1 py-1 w-full sm:w-auto text-sm font-medium text-purple-900 bg-purple-100 rounded-lg hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
               <PlusIcon
                 className={`${
                   open ? "transform rotate-45" : ""
-                } w-5 h-5 text-purple-500`}
+                } w-5 h-5 text-purple-500 m-auto`}
               />
             </Disclosure.Button>
-            <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
+            <Disclosure.Panel className="pt-4 pb-2 text-sm text-gray-500 mt-6">
               <motion.ul
                 animate={{ opacity: 1 }}
                 initial={{ opacity: 0 }}
                 transition={{ duration: 1.5 }}
-                className="grid grid-cols-1 lg:gap-x-12 gap-y-12 sm:grid-cols-2 lg:grid-cols-3 overflow-hidden"
+                className="grid grid-cols-1 md:gap-x-20 md:gap-y-20 sm:gap-x-14 sm:gap-y-14 sm:grid-cols-2 lg:grid-cols-3 overflow-hidden w-full max-w-6xl m-auto"
               >
                 {modelData.map((image, index) => (
                   <React.Fragment key={index}>
@@ -177,7 +177,7 @@ export function VersionOverview({
 
   return (
     <div className="mb-12">
-      <h1 className="text-2xl font-medium float-left">{versionName}</h1>
+      <h1 className="md:text-2xl text-xl font-medium float-left mt-1 md:mt-0">{versionName}</h1>
       <Disclosure>
         {({ open }) => (
           <>
@@ -196,7 +196,7 @@ export function VersionOverview({
                 <div className="w-full border-t border-gray-300" />
               </div>
             </div>
-            <Disclosure.Panel className="px-4 text-sm">
+            <Disclosure.Panel>
               <motion.div
                 className="overflow-hidden"
                 animate={{ height: "auto" }}
@@ -325,9 +325,9 @@ export const UserImages = ({ onChange, radioForm, enableDeletion }) => {
   // Render UserImages without the radioForm option
   if (!radioForm) {
     return (
-      <form className="space-y-4 max-w-7xl mx-12 m-auto h-full flex flex-col">
-        <div className="grid grid-cols-3 my-2">
-          <h1 className="col-span-1 col-start-2 text-4xl font-normal text-center">
+      <form className="space-y-4 max-w-7xl md:mx-12 mx-6 m-auto h-full flex flex-col mb-24">
+        <div className="grid grid-cols-3 mb-8 md:my-4">
+          <h1 className="md:col-span-1 md:col-start-2 col-span-2 col-start-1 sm:text-4xl text-3xl font-normal text-left md:text-center w-full">
             Your Images
           </h1>
           {enableDeletion && (
@@ -437,7 +437,7 @@ export const UserImages = ({ onChange, radioForm, enableDeletion }) => {
           setSelected(e)
         }}
       >
-        <h1 className="text-4xl font-normal text-center">Your Images</h1>
+        <h1 className="sm:text-4xl text-3xl font-normal text-center mb-10 pt-2">Your Images</h1>
         {imagesOverview.map((component, index) => (
           <React.Fragment key={index}>{component}</React.Fragment>
         ))}

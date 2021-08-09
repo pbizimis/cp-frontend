@@ -27,7 +27,7 @@ export function Method({ id, onClick, getAccessTokenSilently, methods }) {
         key={model.name}
         layoutId={`container-${model.name}`}
         transition={{ duration: 0.5, delay: 0 }}
-        className="rounded-lg flex flex-col sm:rounded-tr-none fixed z-40 top-28 right-12 left-12 bottom-12 bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500"
+        className="rounded-lg max-w-5xl m-auto flex flex-col fixed z-40 top-28 right-4 left-4 bottom-12 md:right-8 md:left-8 bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500"
       >
         <motion.div>
           <motion.span
@@ -218,7 +218,8 @@ export function Methods({ getAccessTokenSilently, data, url_prefix }) {
 
   return (
     <AnimateSharedLayout>
-      <div className="mx-12 rounded-lg bg-gray-200 shadow-2xl divide-y divide-gray-200 sm:divide-y-0 sm:grid sm:grid-cols-2 sm:gap-px relative">
+      <div className="m-auto max-w-5xl">
+      <div className="mx-6 sm:mx-10 rounded-lg bg-gray-200 shadow-2xl divide-y divide-gray-200 sm:divide-y-0 sm:grid sm:grid-cols-2 sm:gap-px relative">
         {methods.map((model, modelIdx) => (
           <motion.div
             key={model.name}
@@ -282,6 +283,7 @@ export function Methods({ getAccessTokenSilently, data, url_prefix }) {
             />
           )}
         </AnimatePresence>
+      </div>
       </div>
     </AnimateSharedLayout>
   )

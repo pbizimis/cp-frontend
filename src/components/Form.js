@@ -16,11 +16,11 @@ export function Dropdown({ data, control }) {
   const [selected, setSelected] = useState(data.options[data.default])
   return (
     <div className="sm:col-span-6">
-      <div className="flex gap-4">
+      <div className="flex gap-2 relative">
+      <Flyout name={data.name} description={data.description} />
       <label className="block text-sm font-medium text-gray-700">
         {data.name}
       </label>
-      <Flyout name={data.name} description={data.description} />
       </div>
       <Controller
         control={control}
@@ -135,12 +135,13 @@ export function Dropdown({ data, control }) {
 export function Slider({ data, control }) {
   return (
     <div className="sm:col-span-6">
-      <div className="flex gap-4">
+      <div className="flex gap-2 relative">
+      <Flyout name={data.name} description={data.description} />
       <label className="block text-sm font-medium text-gray-700">
         {data.name}
       </label>
-      <Flyout name={data.name} description={data.description} />
       </div>
+      <div className="mx-4">
       <Controller
         control={control}
         name={data.name.toLowerCase()}
@@ -155,6 +156,7 @@ export function Slider({ data, control }) {
           />
         )}
       />
+      </div>
     </div>
   )
 }
@@ -162,11 +164,11 @@ export function Slider({ data, control }) {
 export function Text({ data, control }) {
   return (
     <div className="sm:col-span-6">
-      <div className="flex gap-4">
+      <div className="flex gap-2 relative">
+      <Flyout name={data.name} description={data.description} />
       <label className="block text-sm font-medium text-gray-700">
         {data.name}
       </label>
-      <Flyout name={data.name} description={data.description} />
       </div>
       <Controller
         control={control}
@@ -206,12 +208,12 @@ export function UserImagesDisclosure({ currentImage, onChange, radioForm }) {
                 />
               </Disclosure.Button>
             )}
-            <Disclosure.Panel className="fixed inset-0 bg-red-800 bg-opacity-20 z-50 flex justify-center items-center">
-              <div className="relative w-10/12 bg-white p-12 rounded-lg h-1/2">
-                <Disclosure.Button className="absolute right-2 top-6 mx-4 p-1 text-sm font-medium text-left text-purple-900 bg-purple-100 rounded-lg hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
+            <Disclosure.Panel className="fixed inset-0 bg-indigo-800 bg-opacity-20 z-50 flex justify-center items-center">
+              <div className="relative w-full max-w-6xl mx-2 md:mx-6 bg-white rounded-lg h-4/6 py-2">
+                <Disclosure.Button className="absolute right-2 top-11 mx-4 p-1.5 text-sm font-medium text-left text-purple-900 bg-purple-100 rounded-lg hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
                   <span>Close</span>
                 </Disclosure.Button>
-                <div className="overflow-y-auto h-full">
+                <div className="overflow-y-auto px-6 sm:px-12 py-6 h-full">
                   <UserImages onChange={onChange} radioForm={radioForm} />
                 </div>
               </div>
@@ -229,11 +231,11 @@ export function ToggleTextOrImage({ data, control, reset }) {
 
   return (
     <div className="sm:col-span-6">
-      <div className="flex gap-4">
+      <div className="flex gap-2 relative">
+      <Flyout name={data.name.replace("_", " ")} description={data.description} />
       <label className="block text-sm font-medium text-gray-700">
         {data.name.replace("_", " ")}
       </label>
-      <Flyout name={data.name.replace("_", " ")} description={data.description} />
       </div>
       <div className="-mb-px flex space-x-8" aria-label="Tabs">
         <button
@@ -249,7 +251,7 @@ export function ToggleTextOrImage({ data, control, reset }) {
             enabled
               ? "border-indigo-500 text-indigo-600"
               : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300",
-            "whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm cursor-pointer"
+            "whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm cursor-pointer focus:outline-none"
           )}
         >
           Seed
@@ -267,7 +269,7 @@ export function ToggleTextOrImage({ data, control, reset }) {
             !enabled
               ? "border-indigo-500 text-indigo-600"
               : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300",
-            "whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm cursor-pointer"
+            "whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm cursor-pointer focus:outline-none"
           )}
         >
           Image
@@ -369,7 +371,7 @@ export function Form({
     >
       <div className="overflow-y-auto pr-2 pl-2 pb-6 border-gray-200 border-4 rounded-md">
         <div>
-          <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+          <div className="mt-6 grid grid-cols-1 lg:gap-y-12 gap-y-6 gap-x-4 sm:grid-cols-6">
             {buildForm().map((component, index) => (
               <React.Fragment key={index}>{component}</React.Fragment>
             ))}

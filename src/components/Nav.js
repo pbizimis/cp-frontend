@@ -80,7 +80,7 @@ export function Nav() {
   return (
     <div className="relative z-50 bg-gray-900 py-3">
       <nav
-        className="relative max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6"
+        className="relative max-w-7xl mx-auto flex items-center justify-between px-6"
         aria-label="Global"
       >
         <div className="flex items-center flex-1">
@@ -88,7 +88,7 @@ export function Nav() {
             <Link to="/">
               <span className="sr-only">Workflow</span>
               <img
-                className="h-8 w-auto sm:h-10"
+                className="w-auto h-10"
                 src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
                 alt=""
               />

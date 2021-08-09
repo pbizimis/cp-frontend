@@ -4,7 +4,7 @@ import { QuestionMarkCircleIcon } from "@heroicons/react/outline"
 
 export default function Flyout({ name, description}) {
   return (
-    <Popover className="absolute left-16">
+    <Popover>
       {({ open }) => (
         <>
           <Popover.Button
@@ -12,7 +12,7 @@ export default function Flyout({ name, description}) {
               "group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             }
           >
-            <QuestionMarkCircleIcon className="h-5 w-5 text-indigo-600-" aria-hidden="true" />
+            <QuestionMarkCircleIcon className="h-5 w-5 text-indigo-600 opacity-80" aria-hidden="true" />
           </Popover.Button>
 
           <Transition
@@ -27,7 +27,7 @@ export default function Flyout({ name, description}) {
           >
             <Popover.Panel
               static
-              className="absolute z-10 -ml-4 mt-3 transform w-screen max-w-lg"
+              className="absolute z-10 mt-3 transform w-screen max-w-lg"
             >
               <div className="rounded-lg shadow-2xl overflow-hidden">
                 <div className="relative bg-gray-900 px-4 py-4">
