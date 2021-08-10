@@ -92,26 +92,26 @@ export function Method({
             getAccessTokenSilently={getAccessTokenSilently}
           />
           {(apiLoading === true || apiData !== null) && (
-            <div className="absolute inset-0 flex justify-center items-center bg-gray-300 bg-opacity-25">
-              <div className="rounded-lg w-5/6 h-5/6 bg-white flex justify-center items-center relative">
+            <div className="absolute inset-0 flex justify-center items-center">
+              <div className="rounded-lg w-full h-full bg-gray-900 flex flex-col justify-center items-center overflow-hidden">
                 <button
                   onClick={() => {
-                    setApiData(null);
-                    setApiLoading(false);
+                    setApiData(null)
+                    setApiLoading(false)
                   }}
-                  className="bg-white absolute top-6 right-6 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-600"
+                  className="bg-white absolute z-50 top-6 right-6 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-600"
                 >
                   <span className="sr-only">Close menu</span>
                   <XIcon className="h-6 w-6" aria-hidden="true" />
                 </button>
                 {apiLoading === true && (
                   <div>
-                    <div className="absolute top-8 text-lg">
-                      <h1>Loading</h1>
+                    <div className="absolute top-8 text-lg text-white">
+                      <h1>Loading...</h1>
                     </div>
-                    <div className="bg-white flex justify-center items-center h-full">
+                    <div className="bg-gray-900 flex justify-center items-center h-full">
                       <div className="flex items-center justify-center w-full h-full">
-                        <div className="flex justify-center items-center text-gray-500">
+                        <div className="flex justify-center items-center text-gray-300">
                           <svg
                             fill="none"
                             className="w-24 h-24 animate-spin"
@@ -132,7 +132,7 @@ export function Method({
                 )}
                 {apiData !== null && Object.keys(apiData).length === 2 && (
                   <>
-                    <div className="absolute top-8 text-lg">
+                    <div className="absolute top-8 text-lg text-white">
                       <h1>Generated</h1>
                     </div>
                     <img
@@ -143,13 +143,13 @@ export function Method({
                 )}
 
                 {apiData !== null && Object.keys(apiData).length === 4 && (
-                  <>
-                    <div className="absolute top-8 text-lg">
+                  <div className="bg-gray-900 overflow-y-auto w-full flex flex-col items-center h-full">
+                    <div className="text-lg text-white rounded-lg bg-gray-900 w-full flex justify-center items-center pt-8 md:pt-4 pb-20 md:pb-8">
                       <h1>StyleMix Result</h1>
                     </div>
-                    <div className="grid grid-cols-2 grid-rows-2 mt-12 border-4 border-gray-500 gap-4">
-                      <div className="col-start-2 row-start-2 relative border-l-2 border-t-2 border-gray-300">
-                        <h1 className="absolute bottom-0 right-0 left-0 text-center">
+                    <div className="grid md:grid-cols-2 md:grid-rows-2 grid-cols-1 gap-16 md:gap-6 relative m-auto">
+                      <div className="md:col-start-2 md:row-start-2 relative md:border-l-2 md:border-t-2 rounded-lg border-gray-200 border-4 md:mb-12">
+                        <h1 className="absolute -top-8 right-0 left-0 text-center text-white">
                           Result Image
                         </h1>
                         <img
@@ -157,8 +157,8 @@ export function Method({
                           src={apiData.url_prefix + apiData.result_image}
                         />
                       </div>
-                      <div className="col-start-1 row-start-2 relative border-r-2 border-t-2 border-gray-300">
-                        <h1 className="absolute bottom-0 right-0 left-0 text-center">
+                      <div className="md:col-start-1 md:row-start-2 relative md:border-l-2 md:border-t-2 rounded-lg border-gray-200 border-4 md:mb-12">
+                        <h1 className="absolute -top-8 right-0 left-0 text-center text-white">
                           Row Image
                         </h1>
                         <img
@@ -166,8 +166,8 @@ export function Method({
                           src={apiData.url_prefix + apiData.row_image}
                         />
                       </div>
-                      <div className="col-start-2 row-start-1 relative border-l-2 border-b-2 border-gray-300">
-                        <h1 className="absolute bottom-0 right-0 left-0 text-center">
+                      <div className="md:col-start-2 md:row-start-1 relative md:border-l-2 md:border-t-2 rounded-lg border-gray-200 border-4 mb-12 md:mb-2">
+                        <h1 className="absolute -top-8 right-0 left-0 text-center text-white">
                           Column Image
                         </h1>
                         <img
@@ -176,7 +176,7 @@ export function Method({
                         />
                       </div>
                     </div>
-                  </>
+                  </div>
                 )}
               </div>
             </div>
@@ -184,5 +184,5 @@ export function Method({
         </motion.div>
       </motion.div>
     </>
-  );
+  )
 }
