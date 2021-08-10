@@ -15,8 +15,8 @@ describe('TextInput', () => {
     return <TextInput data={exampleDataText} control={control} />;
   };
 
-  render(<MockFormTextInput />);
   test('shows text label', () => {
+    render(<MockFormTextInput />);
     expect(screen.getByText(exampleDataText.name)).toBeInTheDocument();
   });
 

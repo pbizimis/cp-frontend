@@ -6,6 +6,16 @@ import { TextInput } from './TextInput';
 import { DiscreteSlider } from './Slider';
 import { Dropdown } from './Dropdown';
 
+/**
+ * The Form factory component.
+ *
+ * @export
+ * @param {object} method
+ * @param {function} setApiLoading
+ * @param {function} setApiData
+ * @param {function} getAccessTokenSilently
+ * @return {HTML} 
+ */
 export function Form({
   method,
   setApiLoading,

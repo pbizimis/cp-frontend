@@ -3,6 +3,15 @@ import { Disclosure } from '@headlessui/react';
 import { PencilIcon } from '@heroicons/react/solid';
 import { UserImages } from '../UserImages/UserImages';
 
+/**
+ * A disclosure component of the Form group. If button is pressed, a panel with user images is opened.
+ *
+ * @export
+ * @param {string} currentImage
+ * @param {function} onChange
+ * @param {boolean} radioForm
+ * @return {HTML} 
+ */
 export function UserImagesDisclosure({ currentImage, onChange, radioForm }) {
   return (
     <div className="sm:col-span-6">

@@ -5,6 +5,15 @@ import Flyout from '../Flyout';
 import { classNames } from '../../utils/class-names';
 import { UserImagesDisclosure } from './UserImagesDisclosure';
 
+/**
+ * A toggle component of the Form group. Toggles between a text input and an image selection.
+ *
+ * @export
+ * @param {object} data
+ * @param {function} control
+ * @param {function} reset
+ * @return {HTML} 
+ */
 export function ToggleTextOrImage({ data, control, reset }) {
   const [enabled, setEnabled] = useState(false);
   const [currentImage, setCurrentImage] = useState('');

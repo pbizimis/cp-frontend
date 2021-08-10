@@ -4,6 +4,20 @@ import { PlusIcon } from '@heroicons/react/solid';
 import { motion } from 'framer-motion';
 import { ModelOverview } from './ModelOverview';
 
+/**
+ * The version overview component of the UserImages group.
+ *
+ * @export
+ * @export
+ * @param {string} versionName
+ * @param {object} versionData
+ * @param {string} urlPrefix
+ * @param {function} register
+ * @param {boolean} radioForm
+ * @param {boolean} checkboxForm
+ * @param {boolean} deleteLoading
+ * @return {HTML} 
+ */
 export function VersionOverview({
   versionName,
   versionData,

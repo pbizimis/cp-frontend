@@ -141,6 +141,7 @@ const fakeModelsData = {
   },
 };
 
+// Setup a mock API server
 const server = setupServer(
   rest.get('http://localhost:8000/api/v1/stylegan2ada/methods', (req, res, ctx) => res(
     ctx.json(fakeModelsData),
@@ -158,12 +159,7 @@ const server = setupServer(
   )),
 );
 
-beforeAll(() => server.listen());
-afterEach(() => {
-  server.resetHandlers();
-});
-afterAll(() => server.close());
-
+// Stubs and Mocks
 global.fetch = require('node-fetch');
 
 process.env.GATSBY_AUDIENCE = 'http://localhost:8000';

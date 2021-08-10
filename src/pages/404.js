@@ -1,6 +1,12 @@
 import React from 'react';
 import { Link } from 'gatsby';
 
+/**
+ * The 404 page component.
+ *
+ * @export
+ * @return {HTML}
+ */
 export default function Page404() {
   return (
     <div className="bg-gray-900 min-h-screen px-4 py-16 sm:px-6 sm:py-24 md:grid md:place-items-center lg:px-8">

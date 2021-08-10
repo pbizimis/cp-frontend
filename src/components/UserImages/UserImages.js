@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Popover, Transition, RadioGroup } from '@headlessui/react';
-
 import { useForm } from 'react-hook-form';
 import { postApi } from '../../utils/use-api';
 import { VersionOverview } from './VersionOverview';
 import { sortImages } from '../../utils/sort-images';
 
+/**
+ * The UserImage factory component.
+ *
+ * @export
+ * @param {function} onChange
+ * @param {boolean} radioForm
+ * @param {boolean} enableDeletion
+ * @return {HTML} 
+ */
 export const UserImages = ({ onChange, radioForm, enableDeletion }) => {
   // Fetched image data
   const [data, setData] = useState(false);
@@ -42,7 +50,7 @@ export const UserImages = ({ onChange, radioForm, enableDeletion }) => {
     fetchData();
   }, [getAccessTokenSilently, url, deleteSuccessful]);
 
-  // Post data to delete
+  // Post data to delete endpoint
   const postData = async (data, url, all) => {
     setDeleteLoading(true);
     let deleteData;

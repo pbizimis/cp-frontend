@@ -6,6 +6,11 @@ import { Nav } from '../../components/Nav';
 import { UserImages } from '../../components/UserImages/UserImages';
 import { postApi } from '../../utils/use-api';
 
+/**
+ * The console index page component.
+ *
+ * @return {HTML} 
+ */
 const Console = () => {
   const [data, setData] = useState(false);
   const { isLoading, getAccessTokenSilently } = useAuth0();

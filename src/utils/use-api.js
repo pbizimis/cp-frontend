@@ -1,3 +1,12 @@
+/**
+ * Fetch a new Auth0 access token and call the API with either GET, DELETE, or POST.
+ * 
+ * @param {object} data 
+ * @param {string} url 
+ * @param {function} getAccessTokenSilently 
+ * @param {string} method 
+ * @returns {object}
+ */
 export const postApi = async (data, url, getAccessTokenSilently, method = 'POST') => {
   let state = {
     error: null,

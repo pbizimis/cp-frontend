@@ -2,9 +2,21 @@ import React from 'react';
 import { Disclosure, RadioGroup } from '@headlessui/react';
 import { PlusIcon } from '@heroicons/react/solid';
 import { motion } from 'framer-motion';
-
 import { ImageContainer } from './ImageContainer';
 
+/**
+ * The model overview component of the UserImages group.
+ *
+ * @export
+ * @param {string} modelName
+ * @param {object} modelData
+ * @param {string} urlPrefix
+ * @param {function} register
+ * @param {boolean} radioForm
+ * @param {boolean} checkboxForm
+ * @param {boolean} deleteLoading
+ * @return {HTML} 
+ */
 export function ModelOverview({
   modelName,
   modelData,

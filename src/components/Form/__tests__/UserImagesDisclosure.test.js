@@ -31,7 +31,8 @@ describe('UserImagesDisclosure', () => {
     const UserImages = require('../../UserImages/UserImages');
     UserImages.UserImages = jest.fn().mockReturnValue(<h1>This is a mock!</h1>);
 
-    const onChange = () => {}; // Stub onChange function
+    // Stub onChange function
+    const onChange = () => {};
 
     render(<UserImagesDisclosure currentImage={value} onChange={onChange} radioForm />);
     expect(screen.getByText('Choose from personal collection')).toBeInTheDocument();

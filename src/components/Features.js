@@ -1,6 +1,12 @@
 import React from 'react';
 import { Link } from 'gatsby';
 
+/**
+ * The feature section of the landing page.
+ *
+ * @export
+ * @return {HTML} 
+ */
 export default function Features() {
   return (
     <div className="relative bg-white pt-16 pb-32 overflow-hidden">

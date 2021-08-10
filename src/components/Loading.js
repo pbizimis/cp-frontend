@@ -1,5 +1,11 @@
 import React from 'react';
 
+/**
+ * The general loading compoenent. This component is a loading circle that spans the whole page.
+ *
+ * @export
+ * @return {HTML} 
+ */
 export function Loading() {
   return (
     <div className="min-h-screen bg-white flex justify-center items-center">

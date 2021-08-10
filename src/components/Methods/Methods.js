@@ -4,16 +4,27 @@ import { BadgeCheckIcon } from '@heroicons/react/outline';
 import { classNames } from '../../utils/class-names';
 import { Method } from './Method';
 
+/**
+ * The Methods component that builds the individual methods and renders all of them.
+ *
+ * @export
+ * @param {function} getAccessTokenSilently
+ * @param {object} data
+ * @param {string} url_prefix
+ * @return {HTML} 
+ */
 export function Methods({ getAccessTokenSilently, data, url_prefix }) {
   const [selectedId, setSelectedId] = useState(null);
 
   const methods = [];
 
+  // Build methods array if data is loaded
   if (data) {
     for (const method in data) {
       data[method].url = url_prefix + data[method].name.toLowerCase();
       methods.push(data[method]);
     }
+  // Otherwise, show a loading circle
   } else {
     return (
       <div className="flex justify-center items-center mt-24">

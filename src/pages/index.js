@@ -5,6 +5,12 @@ import { Loading } from '../components/Loading';
 import { Error } from '../components/AuthError';
 import Features from '../components/Features';
 
+/**
+ * The landing page component.
+ *
+ * @export
+ * @return {HTML} 
+ */
 export default function Index() {
   const { isLoading, error } = useAuth0();
 
@@ -51,7 +57,6 @@ export default function Index() {
               </div>
             </div>
           </div>
-          {/* More main page content here... */}
           <Features />
         </main>
       </div>

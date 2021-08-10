@@ -5,10 +5,16 @@ import { Nav } from '../../components/Nav';
 import { Methods } from '../../components/Methods/Methods';
 import { postApi } from '../../utils/use-api';
 
+/**
+ * The console stylegan2ada page component.
+ *
+ * @return {HTML} 
+ */
 const StyleGan2ADA = () => {
   const [data, setData] = useState(false);
   const { isLoading, getAccessTokenSilently } = useAuth0();
 
+  // Fetch stylegan2ada models
   const url_prefix = `${process.env.GATSBY_AUDIENCE}/api/v1/stylegan2ada/`;
 
   useEffect(() => {

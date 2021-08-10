@@ -5,6 +5,14 @@ import { Controller } from 'react-hook-form';
 import Flyout from '../Flyout';
 import { classNames } from '../../utils/class-names';
 
+/**
+ * A dropdown component of the Form group.
+ *
+ * @export
+ * @param {object} data
+ * @param {function} control
+ * @return {HTML} 
+ */
 export function Dropdown({ data, control }) {
   const [selected, setSelected] = useState(data.options[data.default]);
   return (

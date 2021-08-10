@@ -2,6 +2,14 @@ import React, { Fragment } from 'react';
 import { Popover, Transition } from '@headlessui/react';
 import { QuestionMarkCircleIcon } from '@heroicons/react/outline';
 
+/**
+ * A flyout component that renders a name and description from a clickable question mark.
+ *
+ * @export
+ * @param {string} name
+ * @param {string} description
+ * @return {HTML} 
+ */
 export default function Flyout({ name, description }) {
   return (
     <Popover>

@@ -1,5 +1,16 @@
 import React, { useEffect, useState } from 'react';
 
+/**
+ * The image container component of the UserImages group.
+ *
+ * @export
+ * @param {object} image
+ * @param {function} register
+ * @param {string} urlPrefix
+ * @param {boolean} checkboxForm
+ * @param {boolean} deleteLoading
+ * @return {HTML} 
+ */
 export function ImageContainer({
   image,
   register,

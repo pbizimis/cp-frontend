@@ -3,6 +3,14 @@ import Slider from '@material-ui/core/Slider';
 import { Controller } from 'react-hook-form';
 import Flyout from '../Flyout';
 
+/**
+ * A slider component of the Form group.
+ *
+ * @export
+ * @param {object} data
+ * @param {function} control
+ * @return {HTML} 
+ */
 export function DiscreteSlider({ data, control }) {
   return (
     <div className="sm:col-span-6">

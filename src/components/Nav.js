@@ -6,6 +6,14 @@ import { Link } from 'gatsby';
 import { DotsVerticalIcon } from '@heroicons/react/solid';
 import { classNames } from '../utils/class-names';
 
+/**
+ * A dot menu that renders the name of the user and a logout button.
+ *
+ * @export
+ * @param {function} logout
+ * @param {string} name
+ * @return {*} 
+ */
 export function DotMenu({ logout, name }) {
   return (
     <Menu as="div" className="relative inline-block text-left">

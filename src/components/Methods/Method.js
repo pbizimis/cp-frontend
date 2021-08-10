@@ -3,6 +3,16 @@ import { motion } from 'framer-motion';
 import { BadgeCheckIcon, XIcon } from '@heroicons/react/outline';
 import { Form } from '../Form/Form';
 
+/**
+ * A method component that renders a Form with method specific options.
+ *
+ * @export
+ * @param {integer} id
+ * @param {function} onClick
+ * @param {function} getAccessTokenSilently
+ * @param {object} methods
+ * @return {HTML} 
+ */
 export function Method({
   id, onClick, getAccessTokenSilently, methods,
 }) {

@@ -1,3 +1,10 @@
+/**
+ * Sort a list of images by their version and model.
+ *
+ * @export
+ * @param {list} images
+ * @return {object}
+ */
 export function sortImages(images) {
   const sortedImages = {};
   images.image_ids.map((image) => {
