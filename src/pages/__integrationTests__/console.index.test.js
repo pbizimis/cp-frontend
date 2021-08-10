@@ -121,5 +121,5 @@ test('the correct working of the UserImages component', async () => {
 
     fireEvent.click(screen.getAllByRole("button")[2])
     // One images for the Nav and two from the fetched data
-    expect(screen.getAllByRole("img").length).toBe(3)
+    expect(screen.getAllByRole("img").length).toBe(2)
 })

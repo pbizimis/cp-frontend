@@ -233,12 +233,10 @@ test('the correct posting of the form data', async () => {
 
     // Close the image form
     fireEvent.click(await screen.findByRole('button', {name: "Close"}))
-    // Make sure that only the nav image and the new selected image are displayed
+    // Make sure that only the new selected image is displayed
     const imgs = await screen.findAllByRole('img')
-    expect(imgs.length).toBe(2)
-    expect(imgs[0].src).toBe("https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg")
-    // undefined part because env is not set
-    expect(imgs[1].src).toBe("http://localhost/undefinedc31ad1323ed648feb93cd7398fcf1894")
+    expect(imgs.length).toBe(1)
+    expect(imgs[0].src).toBe("http://localhost/undefined3bf5df238b3741559d9e3806c97f2d33")
 
     const tabs = await screen.findAllByText("Seed")
     fireEvent.click(tabs[1])
@@ -252,14 +250,14 @@ test('the correct posting of the form data', async () => {
     expect((await screen.findAllByText('Row Image')).length).toBe(2)
     expect(await screen.findByText('Result Image'))
     // 3 Result Images and 2 Previous ones
-    expect((await screen.findAllByRole('img')).length).toBe(5)
+    expect((await screen.findAllByRole('img')).length).toBe(4)
 
     // For easier access, the sent form data is embedded in the image srcs
     // Truncation value of 1
-    expect((await screen.findAllByRole('img'))[2].src).toBe("https://formdata:1/")
+    expect((await screen.findAllByRole('img'))[1].src).toBe("https://formdata:1/")
     // Row image was selected with id 
-    expect((await screen.findAllByRole('img'))[3].src).toBe("https://formdata:c31ad1323ed648feb93cd7398fcf1894")
+    expect((await screen.findAllByRole('img'))[2].src).toBe("https://formdata:3bf5df238b3741559d9e3806c97f2d33")
     // Column image was selected by seed text
-    expect((await screen.findAllByRole('img'))[4].src).toBe("https://formdata:New Seed Value")
+    expect((await screen.findAllByRole('img'))[3].src).toBe("https://formdata:New Seed Value")
     
 })
