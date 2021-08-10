@@ -135,10 +135,12 @@ export function Method({
                     <div className="absolute top-8 text-lg text-white">
                       <h1>Generated</h1>
                     </div>
-                    <img
-                      alt=""
-                      src={apiData.url_prefix + apiData.result_image}
-                    />
+                    <div className="rounded-lg border-gray-200 border-4">
+                      <img
+                        alt=""
+                        src={apiData.url_prefix + apiData.result_image}
+                      />
+                    </div>
                   </>
                 )}
 
@@ -148,7 +150,7 @@ export function Method({
                       <h1>StyleMix Result</h1>
                     </div>
                     <div className="grid md:grid-cols-2 md:grid-rows-2 grid-cols-1 gap-16 md:gap-6 relative m-auto">
-                      <div className="md:col-start-2 md:row-start-2 relative md:border-l-2 md:border-t-2 rounded-lg border-gray-200 border-4 md:mb-12">
+                      <div className="md:col-start-2 md:row-start-2 relative rounded-lg border-gray-200 border-4 md:mb-12">
                         <h1 className="absolute -top-8 right-0 left-0 text-center text-white">
                           Result Image
                         </h1>
@@ -157,7 +159,7 @@ export function Method({
                           src={apiData.url_prefix + apiData.result_image}
                         />
                       </div>
-                      <div className="md:col-start-1 md:row-start-2 relative md:border-l-2 md:border-t-2 rounded-lg border-gray-200 border-4 md:mb-12">
+                      <div className="md:col-start-1 md:row-start-2 relative rounded-lg border-gray-200 border-4 md:mb-12">
                         <h1 className="absolute -top-8 right-0 left-0 text-center text-white">
                           Row Image
                         </h1>
@@ -166,7 +168,7 @@ export function Method({
                           src={apiData.url_prefix + apiData.row_image}
                         />
                       </div>
-                      <div className="md:col-start-2 md:row-start-1 relative md:border-l-2 md:border-t-2 rounded-lg border-gray-200 border-4 mb-12 md:mb-2">
+                      <div className="md:col-start-2 md:row-start-1 relative rounded-lg border-gray-200 border-4 mb-12">
                         <h1 className="absolute -top-8 right-0 left-0 text-center text-white">
                           Column Image
                         </h1>
