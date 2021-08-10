@@ -1,16 +1,14 @@
-import React, { Fragment } from "react"
-import { Popover, Transition } from "@headlessui/react"
-import { QuestionMarkCircleIcon } from "@heroicons/react/outline"
+import React, { Fragment } from 'react';
+import { Popover, Transition } from '@headlessui/react';
+import { QuestionMarkCircleIcon } from '@heroicons/react/outline';
 
-export default function Flyout({ name, description}) {
+export default function Flyout({ name, description }) {
   return (
     <Popover>
       {({ open }) => (
         <>
           <Popover.Button
-            className={
-              "group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            }
+            className="group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             <QuestionMarkCircleIcon className="h-5 w-5 text-indigo-600 opacity-80" aria-hidden="true" />
           </Popover.Button>
@@ -31,8 +29,8 @@ export default function Flyout({ name, description}) {
             >
               <div className="rounded-lg shadow-2xl overflow-hidden">
                 <div className="relative bg-gray-900 px-4 py-4">
-                    <p className="text-base font-medium text-white">{name}</p>
-                    <p className="mt-1 text-sm text-white">{description}</p>
+                  <p className="text-base font-medium text-white">{name}</p>
+                  <p className="mt-1 text-sm text-white">{description}</p>
                 </div>
               </div>
             </Popover.Panel>
@@ -40,5 +38,5 @@ export default function Flyout({ name, description}) {
         </>
       )}
     </Popover>
-  )
+  );
 }

@@ -1,23 +1,22 @@
-import React from "react";
+import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Nav } from '../components/Nav';
 import { Loading } from '../components/Loading';
 import { Error } from '../components/AuthError';
-import Features from "../components/Features";
+import Features from '../components/Features';
 
 export default function Index() {
-
   const { isLoading, error } = useAuth0();
 
   if (isLoading) {
     return <Loading />;
   }
-  
+
   return (
     <div className="min-h-screen">
       <div className="relative overflow-hidden">
-      <Nav />
-      {error && <Error message={error.message} />}
+        <Nav />
+        {error && <Error message={error.message} />}
 
         <main>
           <div className="pt-10 pb-10 bg-gray-900 sm:pt-16 lg:pt-8 lg:pb-14 lg:overflow-hidden">
@@ -30,7 +29,11 @@ export default function Index() {
                       <span className="block text-indigo-400">Find Inspiration</span>
                     </h1>
                     <p className="mt-3 text-base text-gray-300 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
-                      WebDesig(a)n is a tool that leverages <strong><a href="https://thispersondoesnotexist.com/">NVIDIA's StyleGan AI</a></strong> to generate different web designs.
+                      WebDesig(a)n is a tool that leverages
+                      {' '}
+                      <strong><a href="https://thispersondoesnotexist.com/">NVIDIA's StyleGan AI</a></strong>
+                      {' '}
+                      to generate different web designs.
                       These designs optimally help web designers to find new ideas and inspiration.
                       The AI models are trained on thousands of website images for a diverse mix of creations.
                     </p>
@@ -53,5 +56,5 @@ export default function Index() {
         </main>
       </div>
     </div>
-  )
+  );
 }

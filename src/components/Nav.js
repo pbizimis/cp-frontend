@@ -1,14 +1,10 @@
-import React from "react"
-import { Fragment } from "react"
-import { Transition, Menu } from "@headlessui/react"
-import { useAuth0 } from "@auth0/auth0-react"
-import { Link } from "gatsby"
+import React, { Fragment } from 'react';
 
-import { DotsVerticalIcon } from "@heroicons/react/solid"
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ")
-}
+import { Transition, Menu } from '@headlessui/react';
+import { useAuth0 } from '@auth0/auth0-react';
+import { Link } from 'gatsby';
+import { DotsVerticalIcon } from '@heroicons/react/solid';
+import { classNames } from '../utils/class-names';
 
 export function DotMenu({ logout, name }) {
   return (
@@ -41,11 +37,13 @@ export function DotMenu({ logout, name }) {
                   {({ active }) => (
                     <h1
                       className={classNames(
-                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                        "block px-4 py-2 text-sm w-full"
+                        active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                        'block px-4 py-2 text-sm w-full',
                       )}
                     >
-                      Hi, {name}
+                      Hi,
+                      {' '}
+                      {name}
                     </h1>
                   )}
                 </Menu.Item>
@@ -53,13 +51,11 @@ export function DotMenu({ logout, name }) {
                   {({ active }) => (
                     <button
                       className={classNames(
-                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                        "block px-4 py-2 text-sm cursor-pointer w-full text-left"
+                        active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                        'block px-4 py-2 text-sm cursor-pointer w-full text-left',
                       )}
                       id="logout"
-                      onClick={() =>
-                        logout({ returnTo: window.location.origin })
-                      }
+                      onClick={() => logout({ returnTo: window.location.origin })}
                     >
                       Log Out
                     </button>
@@ -71,11 +67,11 @@ export function DotMenu({ logout, name }) {
         </>
       )}
     </Menu>
-  )
+  );
 }
 
 export function Nav() {
-  const { isAuthenticated, user, logout } = useAuth0()
+  const { isAuthenticated, user, logout } = useAuth0();
 
   return (
     <div className="relative z-50 bg-gray-900 py-3">
@@ -106,5 +102,5 @@ export function Nav() {
         )}
       </nav>
     </div>
-  )
+  );
 }

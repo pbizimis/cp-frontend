@@ -1,5 +1,5 @@
-import React from "react"
-import { Link } from "gatsby"
+import React from 'react';
+import { Link } from 'gatsby';
 
 export default function Features() {
   return (
@@ -13,8 +13,10 @@ export default function Features() {
                   How does it work?
                 </h2>
                 <p className="mt-4 text-lg text-gray-500">
-                  Once you log in, you can access your personal{" "}
-                  <strong>WebDesigan Console</strong>. There, you can see your
+                  Once you log in, you can access your personal
+                  {' '}
+                  <strong>WebDesigan Console</strong>
+                  . There, you can see your
                   created images and choose a StyleGan version. Each StyleGan
                   version has multiple models that you can use to generate new
                   designs.
@@ -118,10 +120,12 @@ export default function Features() {
                   Can I trust this website?
                 </h2>
                 <p className="mt-4 text-lg text-gray-500">
-                  This website uses{" "}
+                  This website uses
+                  {' '}
                   <strong>
                     <a href="https://auth0.com/">Auth0</a>
-                  </strong>{" "}
+                  </strong>
+                  {' '}
                   for authentication, which means that I never see or touch your
                   credentials. Also, no information about you is stored in any
                   way. Our servers are located in Europe and the creation of new
@@ -159,5 +163,5 @@ export default function Features() {
         </div>
       </div>
     </div>
-  )
+  );
 }
