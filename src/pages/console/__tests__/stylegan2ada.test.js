@@ -14,7 +14,7 @@ describe("Console StyleGan2ADA", () => {
     const auth0 = require('@auth0/auth0-react');
     auth0.useAuth0 = jest.fn().mockReturnValue({ isLoading: true, getAccessTokenSilently: () => {} });
     const useApi = require('../../../utils/use-api');
-    useApi.postApi = jest.fn().mockImplementation((...args) => ({ data: 'stubData' }));
+    useApi.useApi = jest.fn().mockImplementation((...args) => ({ data: 'stubData' }));
 
     let containerElement;
     await act(async () => {
@@ -29,7 +29,7 @@ describe("Console StyleGan2ADA", () => {
     const auth0 = require('@auth0/auth0-react');
     auth0.useAuth0 = jest.fn().mockReturnValue({ isLoading: false, getAccessTokenSilently: () => {} });
     const useApi = require('../../../utils/use-api');
-    useApi.postApi = jest.fn().mockImplementation((...args) => ({ data: 'stubData' }));
+    useApi.useApi = jest.fn().mockImplementation((...args) => ({ data: 'stubData' }));
     const Methods = require('../../../components/Methods/Methods');
     Methods.Methods = jest.fn().mockReturnValue(<h1>Methods are rendered!</h1>);
 

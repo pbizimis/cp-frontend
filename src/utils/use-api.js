@@ -7,7 +7,7 @@
  * @param {string} method 
  * @returns {object}
  */
-export const postApi = async (data, url, getAccessTokenSilently, method = 'POST') => {
+export const useApi = async (data, url, getAccessTokenSilently, method = 'POST') => {
   let state = {
     error: null,
     data: null,

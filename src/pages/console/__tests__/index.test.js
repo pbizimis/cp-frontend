@@ -44,7 +44,7 @@ describe("Console Index", () => {
     const auth0 = require('@auth0/auth0-react');
     auth0.useAuth0 = jest.fn().mockReturnValue({ isLoading: true, getAccessTokenSilently: () => {} });
     const useApi = require('../../../utils/use-api');
-    useApi.postApi = jest.fn().mockImplementation((...args) => exampleData);
+    useApi.useApi = jest.fn().mockImplementation((...args) => exampleData);
 
     let containerElement;
     await act(async () => {
@@ -59,7 +59,7 @@ describe("Console Index", () => {
     const auth0 = require('@auth0/auth0-react');
     auth0.useAuth0 = jest.fn().mockReturnValue({ isLoading: false, getAccessTokenSilently: () => {} });
     const useApi = require('../../../utils/use-api');
-    useApi.postApi = jest.fn().mockImplementation((...args) => exampleData);
+    useApi.useApi = jest.fn().mockImplementation((...args) => exampleData);
 
     await act(async () => {
       render(<Console />);

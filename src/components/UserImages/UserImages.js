@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Popover, Transition, RadioGroup } from '@headlessui/react';
 import { useForm } from 'react-hook-form';
-import { postApi } from '../../utils/use-api';
+import { useApi } from '../../utils/use-api';
 import { VersionOverview } from './VersionOverview';
 import { sortImages } from '../../utils/sort-images';
 
@@ -37,7 +37,7 @@ export const UserImages = ({ onChange, radioForm, enableDeletion }) => {
   // Fetch images when component is mounted
   useEffect(() => {
     const fetchData = async () => {
-      const state = await postApi(null, url, getAccessTokenSilently);
+      const state = await useApi(null, url, getAccessTokenSilently);
       if (
         state.data
         && 'image_url_prefix' in state.data
@@ -70,7 +70,7 @@ export const UserImages = ({ onChange, radioForm, enableDeletion }) => {
     } else {
       deleteData = data;
     }
-    const state = await postApi(
+    const state = await useApi(
       deleteData,
       url,
       getAccessTokenSilently,

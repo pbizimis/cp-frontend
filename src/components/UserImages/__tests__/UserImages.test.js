@@ -57,7 +57,7 @@ describe('UserImages', () => {
   test('that the label text is displayed', async () => {
     // Mock fetchData request
     const useApi = require('../../../utils/use-api');
-    useApi.postApi = jest.fn().mockImplementation((...args) => mockUserImagesData);
+    useApi.useApi = jest.fn().mockImplementation((...args) => mockUserImagesData);
 
     await act(async () => {
       render(<UserImages register={() => {}} radioForm={false} />);
@@ -68,7 +68,7 @@ describe('UserImages', () => {
   test('that the model labels are displayed in default state and two button svgs are rendered', async () => {
     // Mock fetchData request
     const useApi = require('../../../utils/use-api');
-    useApi.postApi = jest.fn().mockImplementation((...args) => mockUserImagesData);
+    useApi.useApi = jest.fn().mockImplementation((...args) => mockUserImagesData);
 
     let containerElement;
     await act(async () => {
@@ -84,7 +84,7 @@ describe('UserImages', () => {
   test('that the loading circle is rendered when api data is fetched', async () => {
     // Mock fetchData request
     const useApi = require('../../../utils/use-api');
-    useApi.postApi = jest.fn().mockImplementation((...args) => ({ error: null, data: null }));
+    useApi.useApi = jest.fn().mockImplementation((...args) => ({ error: null, data: null }));
 
     let containerElement;
     await act(async () => {

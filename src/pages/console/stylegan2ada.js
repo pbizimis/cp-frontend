@@ -3,7 +3,7 @@ import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 import { Loading } from '../../components/Loading';
 import { Nav } from '../../components/Nav';
 import { Methods } from '../../components/Methods/Methods';
-import { postApi } from '../../utils/use-api';
+import { useApi } from '../../utils/use-api';
 
 /**
  * The console stylegan2ada page component.
@@ -19,7 +19,7 @@ const StyleGan2ADA = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const state = await postApi(
+      const state = await useApi(
         null,
         `${url_prefix}methods`,
         getAccessTokenSilently,

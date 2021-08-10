@@ -198,7 +198,7 @@ describe('Form API Logic', () => {
   };
   test('shows that form default values are sent correctly', async () => {
     const useApi = require('../../../utils/use-api');
-    useApi.postApi = jest.fn().mockImplementation((data, ...args) => ({ data }));
+    useApi.useApi = jest.fn().mockImplementation((data, ...args) => ({ data }));
 
     let setApiDataValue;
 
@@ -233,7 +233,7 @@ describe('Form API Logic', () => {
 
   test('shows that form sets state correctly', async () => {
     const useApi = require('../../../utils/use-api');
-    useApi.postApi = jest.fn().mockImplementation((data, ...args) => ({ data }));
+    useApi.useApi = jest.fn().mockImplementation((data, ...args) => ({ data }));
 
     const setApiLoadingValues = [];
 
@@ -261,7 +261,7 @@ describe('Form API Logic', () => {
 
   test('shows form values can be changed and are sent correctly', async () => {
     const useApi = require('../../../utils/use-api');
-    useApi.postApi = jest.fn().mockImplementation((data, ...args) => ({ data }));
+    useApi.useApi = jest.fn().mockImplementation((data, ...args) => ({ data }));
 
     const setApiLoadingValues = [];
     let setApiDataValue;

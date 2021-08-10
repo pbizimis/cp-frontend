@@ -4,7 +4,7 @@ import { Link } from 'gatsby';
 import { Loading } from '../../components/Loading';
 import { Nav } from '../../components/Nav';
 import { UserImages } from '../../components/UserImages/UserImages';
-import { postApi } from '../../utils/use-api';
+import { useApi } from '../../utils/use-api';
 
 /**
  * The console index page component.
@@ -19,7 +19,7 @@ const Console = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const state = await postApi(null, url, getAccessTokenSilently);
+      const state = await useApi(null, url, getAccessTokenSilently);
       if (state.data && 'stylegan_models' in state.data) {
         setData(state.data.stylegan_models);
       }

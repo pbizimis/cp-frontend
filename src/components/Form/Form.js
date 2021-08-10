@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { postApi } from '../../utils/use-api';
+import { useApi } from '../../utils/use-api';
 import { ToggleTextOrImage } from './ToggleSeedOrImage';
 import { TextInput } from './TextInput';
 import { DiscreteSlider } from './Slider';
@@ -29,7 +29,7 @@ export function Form({
   const fetchData = async (data, event, url) => {
     event.preventDefault();
     setApiLoading(true);
-    const state = await postApi(data, url, getAccessTokenSilently);
+    const state = await useApi(data, url, getAccessTokenSilently);
     setApiLoading(false);
     setApiData(state.data);
   };

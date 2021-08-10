@@ -1,5 +1,5 @@
 import { act } from 'react-dom/test-utils';
-import { postApi } from '../use-api';
+import { useApi } from '../use-api';
 
 describe("API", () => {
   
@@ -10,7 +10,7 @@ describe("API", () => {
   test('shows that api is fetched as a GET when no data is passed', async () => {
     let resultApi;
     await act(async () => {
-      resultApi = await postApi(null, 'url', () => {});
+      resultApi = await useApi(null, 'url', () => {});
     });
     expect(resultApi.data.method).toBe('GET');
     expect(resultApi.data['content-type']).toBe(undefined);
@@ -19,7 +19,7 @@ describe("API", () => {
   test('shows that api is fetched as a POST when data is passed', async () => {
     let resultApi;
     await act(async () => {
-      resultApi = await postApi('data', 'url', () => {});
+      resultApi = await useApi('data', 'url', () => {});
     });
     expect(resultApi.data.method).toBe('POST');
     expect(resultApi.data['content-type']).toBe('application/json');
@@ -37,7 +37,7 @@ describe("API", () => {
 
     let resultApi;
     await act(async () => {
-      resultApi = await postApi('data', 'url', () => {});
+      resultApi = await useApi('data', 'url', () => {});
     });
     expect(resultApi.error.name).toBe('Error');
     expect(resultApi.error.message).toBe('This is an error!');
