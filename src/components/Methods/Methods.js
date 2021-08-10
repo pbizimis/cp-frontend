@@ -51,7 +51,7 @@ export function Methods({ getAccessTokenSilently, data, url_prefix }) {
 
   return (
     <AnimateSharedLayout>
-      <div className="m-auto max-w-5xl">
+      <div className="m-auto max-w-5xl relative z-10">
         <div className="mx-6 sm:mx-10 rounded-lg bg-gray-200 shadow-2xl divide-y divide-gray-200 sm:divide-y-0 sm:grid sm:grid-cols-2 sm:gap-px relative">
           {methods.map((model, modelIdx) => (
             <motion.div
