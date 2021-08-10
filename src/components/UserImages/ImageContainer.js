@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ImageInfoFlyout from '../ImageInfoFlyout';
 
 /**
  * The image container component of the UserImages group.
@@ -32,6 +33,7 @@ export function ImageContainer({
 
   return (
     <li key={image.url} className="col-span-1 bg-white">
+      <ImageInfoFlyout imageData={image} />
       <input
         type="checkbox"
         className="hidden"
