@@ -8,7 +8,8 @@ module.exports = {
   /* Your site config here */
   plugins: [
     "gatsby-plugin-postcss",
-    `gatsby-plugin-netlify`,
+    "gatsby-plugin-netlify",
+    "gatsby-plugin-react-helmet",
     {
       resolve: `gatsby-plugin-csp`,
       options: {

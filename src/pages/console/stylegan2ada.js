@@ -4,6 +4,7 @@ import { Loading } from '../../components/Loading';
 import { Nav } from '../../components/Nav';
 import { Methods } from '../../components/Methods/Methods';
 import { useApi } from '../../utils/use-api';
+import { Helmet } from 'react-helmet';
 
 /**
  * The console stylegan2ada page component.
@@ -37,6 +38,9 @@ const StyleGan2ADA = () => {
 
   return (
     <div className="h-screen bg-gray-900">
+      <Helmet>
+        <title>WebDesig(a)n - StyleGan2ADA</title>
+      </Helmet>
       <Nav />
 
       <section className="max-w-7xl m-auto mt-12">

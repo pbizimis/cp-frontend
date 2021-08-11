@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import { Helmet } from 'react-helmet';
 
 /**
  * The 404 page component.
@@ -10,6 +11,9 @@ import { Link } from 'gatsby';
 export default function Page404() {
   return (
     <div className="bg-gray-900 min-h-screen px-4 py-16 sm:px-6 sm:py-24 md:grid md:place-items-center lg:px-8">
+      <Helmet>
+        <title>404 - Not Found</title>
+      </Helmet>
       <div className="max-w-max mx-auto">
         <main className="sm:flex">
           <p className="text-4xl font-extrabold text-indigo-200 sm:text-5xl">404</p>

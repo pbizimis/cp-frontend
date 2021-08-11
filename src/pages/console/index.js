@@ -5,6 +5,7 @@ import { Loading } from '../../components/Loading';
 import { Nav } from '../../components/Nav';
 import { UserImages } from '../../components/UserImages/UserImages';
 import { useApi } from '../../utils/use-api';
+import { Helmet } from 'react-helmet';
 
 /**
  * The console index page component.
@@ -33,6 +34,9 @@ const Console = () => {
 
   return (
     <div className="min-h-screen overflow-hidden">
+      <Helmet>
+        <title>WebDesig(a)n - Console</title>
+      </Helmet>
       <Nav />
 
       <section className="max-w-7xl m-auto mt-24">

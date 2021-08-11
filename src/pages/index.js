@@ -4,6 +4,7 @@ import { Nav } from '../components/Nav';
 import { Loading } from '../components/Loading';
 import { Error } from '../components/AuthError';
 import Features from '../components/Features';
+import { Helmet } from "react-helmet";
 
 /**
  * The landing page component.
@@ -20,6 +21,10 @@ export default function Index() {
 
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>WebDesig(a)n</title>
+        <html lang="en" />
+      </Helmet>
       <div className="relative overflow-hidden">
         <Nav />
         {error && <Error message={"Please refresh the page."} />}
