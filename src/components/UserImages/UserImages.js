@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'gatsby';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Popover, Transition, RadioGroup } from '@headlessui/react';
+import { PlusIcon } from '@heroicons/react/solid'
 import { useForm } from 'react-hook-form';
 import { useApi } from '../../utils/use-api';
 import { VersionOverview } from './VersionOverview';
@@ -127,102 +129,138 @@ export const UserImages = ({ onChange, radioForm, enableDeletion }) => {
     return (
       <form className="space-y-4 max-w-7xl md:mx-12 mx-6 m-auto h-full flex flex-col mb-24">
         <div className="grid grid-cols-3 mb-8 md:my-4">
+        {Object.keys(data).length !== 0 && (
           <h1 className="md:col-span-1 md:col-start-2 col-span-2 col-start-1 sm:text-4xl text-3xl font-normal text-left md:text-center w-full">
             Your Images
           </h1>
-          {enableDeletion && (
-            <div className="flex justify-end mr-1 gap-4">
-              {checkboxForm && (
-                <Popover className="relative">
-                  {({ open }) => (
-                    <>
-                      <Popover.Button
-                        className={`${
-                          deleteLoading
-                            ? 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 animate-pulse cursor-default'
-                            : 'bg-red-400 hover:bg-red-500 focus:ring-red-300'
-                        } inline-flex items-center px-3 py-3 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2`}
-                      >
-                        {deleteLoading ? 'Loading' : 'Delete'}
-                      </Popover.Button>
-                      <Transition
-                        as={React.Fragment}
-                        enter="transition ease-out duration-200"
-                        enterFrom="opacity-0 translate-y-1"
-                        enterTo="opacity-100 translate-y-0"
-                        leave="transition ease-in duration-150"
-                        leaveFrom="opacity-100 translate-y-0"
-                        leaveTo="opacity-0 translate-y-1"
-                      >
-                        <Popover.Panel className="absolute z-10 px-4 mt-3 transform -translate-x-1/2 left-1/2 sm:px-0 lg:max-w-3xl">
-                          {({ close }) => (
-                            <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
-                              <div className="relative flex gap-12 bg-red-200 p-7">
-                                <button
-                                  type="button"
-                                  onClick={() => {
-                                    handleSubmit(
-                                      async (data) => await postData(data, url, false),
-                                    )();
-                                    close();
-                                  }}
-                                  disabled={deleteLoading}
-                                  className={`${
-                                    deleteLoading
-                                      ? 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 cursor-default'
-                                      : 'bg-red-600 hover:bg-red-700 focus:ring-red-500'
-                                  } inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 -m-3 transition duration-150 ease-in-out`}
-                                >
-                                  {deleteLoading
-                                    ? 'Loading'
-                                    : 'Delete Selected'}
-                                </button>
+        )}
+          {Object.keys(data).length !== 0 && (
+            <>
+              {enableDeletion && (
+                <div className="flex justify-end mr-1 gap-4">
+                  {checkboxForm && (
+                    <Popover className="relative">
+                      {({ open }) => (
+                        <>
+                          <Popover.Button
+                            className={`${
+                              deleteLoading
+                                ? "bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 animate-pulse cursor-default"
+                                : "bg-red-400 hover:bg-red-500 focus:ring-red-300"
+                            } inline-flex items-center px-3 py-3 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2`}
+                          >
+                            {deleteLoading ? "Loading" : "Delete"}
+                          </Popover.Button>
+                          <Transition
+                            as={React.Fragment}
+                            enter="transition ease-out duration-200"
+                            enterFrom="opacity-0 translate-y-1"
+                            enterTo="opacity-100 translate-y-0"
+                            leave="transition ease-in duration-150"
+                            leaveFrom="opacity-100 translate-y-0"
+                            leaveTo="opacity-0 translate-y-1"
+                          >
+                            <Popover.Panel className="absolute z-10 px-4 mt-3 transform -translate-x-1/2 left-1/2 sm:px-0 lg:max-w-3xl">
+                              {({ close }) => (
+                                <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
+                                  <div className="relative flex gap-12 bg-red-200 p-7">
+                                    <button
+                                      type="button"
+                                      onClick={() => {
+                                        handleSubmit(
+                                          async data =>
+                                            await postData(data, url, false)
+                                        )()
+                                        close()
+                                      }}
+                                      disabled={deleteLoading}
+                                      className={`${
+                                        deleteLoading
+                                          ? "bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 cursor-default"
+                                          : "bg-red-600 hover:bg-red-700 focus:ring-red-500"
+                                      } inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 -m-3 transition duration-150 ease-in-out`}
+                                    >
+                                      {deleteLoading
+                                        ? "Loading"
+                                        : "Delete Selected"}
+                                    </button>
 
-                                <button
-                                  type="button"
-                                  onClick={() => {
-                                    handleSubmit(
-                                      async (data) => await postData(data, url, true),
-                                    )();
-                                    close();
-                                  }}
-                                  disabled={deleteLoading}
-                                  className={`${
-                                    deleteLoading
-                                      ? 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 cursor-default'
-                                      : 'bg-red-600 hover:bg-red-700 focus:ring-red-500'
-                                  } inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 -m-3 transition duration-150 ease-in-out`}
-                                >
-                                  {deleteLoading ? 'Loading' : 'Delete All'}
-                                </button>
-                              </div>
-                            </div>
-                          )}
-                        </Popover.Panel>
-                      </Transition>
-                    </>
+                                    <button
+                                      type="button"
+                                      onClick={() => {
+                                        handleSubmit(
+                                          async data =>
+                                            await postData(data, url, true)
+                                        )()
+                                        close()
+                                      }}
+                                      disabled={deleteLoading}
+                                      className={`${
+                                        deleteLoading
+                                          ? "bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 cursor-default"
+                                          : "bg-red-600 hover:bg-red-700 focus:ring-red-500"
+                                      } inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 -m-3 transition duration-150 ease-in-out`}
+                                    >
+                                      {deleteLoading ? "Loading" : "Delete All"}
+                                    </button>
+                                  </div>
+                                </div>
+                              )}
+                            </Popover.Panel>
+                          </Transition>
+                        </>
+                      )}
+                    </Popover>
                   )}
-                </Popover>
+                  <button
+                    type="button"
+                    onClick={e => {
+                      e.preventDefault()
+                      setCheckboxForm(!checkboxForm)
+                      reset()
+                    }}
+                    className="inline-flex items-center px-3 py-3 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                  >
+                    {checkboxForm ? "Cancel" : "Select"}
+                  </button>
+                </div>
               )}
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setCheckboxForm(!checkboxForm);
-                  reset();
-                }}
-                className="inline-flex items-center px-3 py-3 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
-              >
-                {checkboxForm ? 'Cancel' : 'Select'}
-              </button>
-            </div>
+            </>
           )}
         </div>
-        {imagesOverview.map((component, index) => (
-          <React.Fragment key={index}>{component}</React.Fragment>
-        ))}
+        {Object.keys(data).length === 0 && (
+          <div className="text-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="mx-auto h-12 w-12 text-gray-400"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+              />
+            </svg>
+            <h3 className="mt-2 text-sm font-medium text-gray-900">
+              No Images
+            </h3>
+            <p className="mt-1 text-sm text-gray-500">
+              Get started by generating a new website design.
+            </p>
+          </div>
+        )}
+        {Object.keys(data).length !== 0 && (
+          <>
+            {imagesOverview.map((component, index) => (
+              <React.Fragment key={index}>{component}</React.Fragment>
+            ))}
+          </>
+        )}
       </form>
-    );
+    )
   }
 
   // Render UserImages with the radioForm option
@@ -230,16 +268,48 @@ export const UserImages = ({ onChange, radioForm, enableDeletion }) => {
     return (
       <RadioGroup
         value={selected}
-        onChange={(e) => {
-          onChange(e);
-          setSelected(e);
+        onChange={e => {
+          onChange(e)
+          setSelected(e)
         }}
       >
-        <h1 className="sm:text-4xl text-3xl font-normal text-center mb-10 pt-2">Your Images</h1>
-        {imagesOverview.map((component, index) => (
-          <React.Fragment key={index}>{component}</React.Fragment>
-        ))}
+        {Object.keys(data).length === 0 && (
+          <div className="text-center absolute inset-0 flex justify-center items-center">
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="mx-auto h-12 w-12 text-gray-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                />
+              </svg>
+              <h3 className="mt-2 text-sm font-medium text-gray-900">
+                No Images
+              </h3>
+              <p className="mt-1 text-sm text-gray-500">
+                Get started by generating a new website design.
+              </p>
+            </div>
+          </div>
+        )}
+        {Object.keys(data).length !== 0 && (
+          <>
+            <h1 className="sm:text-4xl text-3xl font-normal text-center mb-10 pt-2">
+              Your Images
+            </h1>
+            {imagesOverview.map((component, index) => (
+              <React.Fragment key={index}>{component}</React.Fragment>
+            ))}
+          </>
+        )}
       </RadioGroup>
-    );
+    )
   }
 };

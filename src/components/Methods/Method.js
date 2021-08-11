@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { BadgeCheckIcon, XIcon } from '@heroicons/react/outline';
+import { BadgeCheckIcon, XIcon, XCircleIcon } from '@heroicons/react/outline';
 import { Form } from '../Form/Form';
 
 /**
@@ -129,6 +129,41 @@ export function Method({
                       </div>
                     </div>
                   </div>
+                )}
+                {apiData !== null && "detail" in apiData &&(
+                  <>
+                    {Array.isArray(apiData.detail) && (
+                      <div className="rounded-md bg-red-50 p-4">
+                        <div className="flex">
+                          <div className="flex-shrink-0">
+                            <XCircleIcon className="h-5 w-5 text-red-400" aria-hidden="true" />
+                          </div>
+                          <div className="ml-3">
+                            <h3 className="text-sm font-medium text-red-800">There was an error with your input.</h3>
+                            <div className="mt-2 text-sm text-red-700">
+                              <ul className="list-disc pl-5 space-y-1">
+                                {apiData.detail.map((error, index) => (
+                                  <li key={index} >{error.msg}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                    {typeof apiData.detail === "string" && (
+                      <div className="rounded-md bg-red-50 p-4">
+                        <div className="flex">
+                          <div className="flex-shrink-0">
+                            <XCircleIcon className="h-5 w-5 text-red-400" aria-hidden="true" />
+                          </div>
+                          <div className="ml-3">
+                            <h3 className="text-sm font-medium text-red-800">{apiData.detail}</h3>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </>
                 )}
                 {apiData !== null && Object.keys(apiData).length === 2 && (
                   <>

@@ -67,8 +67,8 @@ describe('ModelOverview', () => {
 
     expect(screen.getAllByRole('img').length).toBe(2);
 
-    // next click hides images again
-    fireEvent.click(screen.getByRole('button'));
+    // next click hide images again
+    fireEvent.click(screen.getAllByRole('button')[0]);
 
     expect(screen.queryAllByRole('img').length).toBe(0);
   });

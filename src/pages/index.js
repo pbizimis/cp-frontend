@@ -22,7 +22,7 @@ export default function Index() {
     <div className="min-h-screen">
       <div className="relative overflow-hidden">
         <Nav />
-        {error && <Error message={error.message} />}
+        {error && <Error message={"Please refresh the page."} />}
 
         <main>
           <div className="pt-10 pb-10 bg-gray-900 sm:pt-16 lg:pt-8 lg:pb-14 lg:overflow-hidden">

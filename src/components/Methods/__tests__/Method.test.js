@@ -115,7 +115,7 @@ describe('Method', () => {
       />,
     );
 
-    screen.getByText('Loading');
+    screen.getByText('Loading...');
   });
 
   test('shows that the Image screen is correctly displayed when state is set (one image)', () => {

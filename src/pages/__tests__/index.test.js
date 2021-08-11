@@ -16,7 +16,7 @@ describe("Index", () => {
     auth0.useAuth0 = jest.fn().mockReturnValue({ isLoading: false, error: { message: 'Error' } });
 
     render(<Index />);
-    expect(screen.getByText('Oops... Error')).toBeInTheDocument();
+    expect(screen.getByText('Please refresh the page.')).toBeInTheDocument();
   });
 
   test('shows the index when no loading or error is occuring', () => {
