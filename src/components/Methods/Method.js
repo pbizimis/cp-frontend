@@ -34,17 +34,17 @@ export function Method({
         key={model.name}
         layoutId={`container-${model.name}`}
         transition={{ duration: 0.5, delay: 0 }}
-        className="rounded-lg max-w-5xl m-auto flex flex-col fixed z-40 top-28 right-4 left-4 bottom-12 md:right-8 md:left-8 bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500"
+        className="rounded-lg max-w-5xl m-auto flex flex-col fixed z-40 sm:top-28 right-1 left-1 top-20 bottom-4 sm:right-4 sm:left-4 sm:bottom-12 md:right-8 md:left-8 bg-white sm:p-6 px-2 py-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500"
       >
         <motion.div>
           <motion.span
             layoutId={`title-icon-${model.name}`}
-            className="rounded-lg inline-flex p-3 ring-4 ring-white text-purple-700 bg-purple-50"
+            className="rounded-lg md:inline-flex p-3 ring-4 ring-white text-purple-700 bg-purple-50 hidden"
           >
             <BadgeCheckIcon className="h-6 w-6" aria-hidden="true" />
           </motion.span>
         </motion.div>
-        <motion.div layout className="inline-flex flex-col items-start mt-6">
+        <motion.div layout className="inline-flex flex-col items-start md:mt-6 mt-2">
           <motion.h3
             className="text-2xl font-medium"
             style={{ lineHeight: 1 }}
@@ -83,7 +83,7 @@ export function Method({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0, transition: { duration: 0.05 } }}
           transition={{ duration: 0.5, delay: 1 }}
-          className="h-full overflow-hidden mt-12"
+          className="h-full overflow-hidden md:mt-12 mt-2"
         >
           <Form
             method={model}
