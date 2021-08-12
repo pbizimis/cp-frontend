@@ -33,7 +33,7 @@ export default function Flyout({ name, description }) {
           >
             <Popover.Panel
               static
-              className="absolute z-10 mt-3 transform w-screen max-w-lg"
+              className="absolute z-10 mt-3 transform max-w-lg"
             >
               <div className="rounded-lg shadow-2xl overflow-hidden">
                 <div className="relative bg-gray-900 px-4 py-4">
